@@ -1,6 +1,5 @@
 numpy
 pandas
 matplotlib
-math
 collections
 scienceplots
