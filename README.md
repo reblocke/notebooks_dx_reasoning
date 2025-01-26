@@ -1,5 +1,5 @@
 # notebooks_dx_reasoning
- Notebook for binder 
 
+Contains Binder Notebooks to run to explain diagnostic modeling concepts
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/reblocke/notebooks_dx_reasoning/HEAD?urlpath=tree)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/reblocke/notebooks_dx_reasoning/HEAD?urlpath=lab)
