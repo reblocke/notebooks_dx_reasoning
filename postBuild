@@ -1,2 +1,2 @@
 # jupyter nbconvert --to notebook --execute --inplace multi_class.ipynb
-voila multi_class.ipynb
+# voila multi_class.ipynb
