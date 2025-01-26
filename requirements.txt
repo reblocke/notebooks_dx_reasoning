@@ -2,4 +2,3 @@ numpy
 pandas
 matplotlib
 scienceplots
-jupyterlab_autorun_cells
