@@ -2,6 +2,10 @@
 
 Contains Binder/Jupyter Notebooks to run to explain diagnostic modeling concepts
 
+- Coherent Multi-class Bayes explanation and demonstration notebook: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/reblocke/notebooks_dx_reasoning/HEAD?filepath/coherent_multi_class.ipynb)
+
+
+
 - Multi-class demonstration notebook: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/reblocke/notebooks_dx_reasoning/HEAD?filepath=multi_class_cont.ipynb)
 - Multi-class demonstration direct: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/reblocke/notebooks_dx_reasoning/HEAD?urlpath=voila/render/multi_class_cont.ipynb)
 
