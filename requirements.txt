@@ -1,6 +1,6 @@
-numpy
-pandas
-scipy
-matplotlib
-scienceplots
-voila
+numpy>=1.23
+scipy>=1.11
+matplotlib>=3.7
+ipywidgets>=8.1
+voila>=0.4
+scienceplots>=2.1
