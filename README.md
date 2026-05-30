@@ -16,6 +16,11 @@ https://mybinder.org/v2/gh/reblocke/notebooks_dx_reasoning/HEAD?labpath=coherent
 https://mybinder.org/v2/gh/reblocke/notebooks_dx_reasoning/HEAD?urlpath=voila/render/coherent_multi_class.ipynb
 )
 
+**Log-odds evidence applet (Voila)**
+[![Binder](https://mybinder.org/badge_logo.svg)](
+https://mybinder.org/v2/gh/reblocke/notebooks_dx_reasoning/HEAD?urlpath=voila/render/log_odds_evidence_applet.ipynb
+)
+
 > Prefer reproducibility? Pin to a commit or tag instead of `HEAD`:
 > ```
 > https://mybinder.org/v2/gh/reblocke/notebooks_dx_reasoning/<COMMIT_OR_TAG>?labpath=coherent_multi_class.ipynb
