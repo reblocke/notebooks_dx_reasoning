@@ -1,0 +1,456 @@
+{
+  "oracle": "diagnostic_manim_authored_fixture_oracle_v1",
+  "scope": "Validates authored mathematical examples and reference metadata only.",
+  "not_validated": [
+    "future Manim implementation",
+    "rendered geometry or pixels",
+    "actual animation timing",
+    "notebook or application implementations",
+    "empirical clinical validity"
+  ],
+  "absolute_tolerance": 1e-10,
+  "check_count_convention": "Each named scalar, vector, exact rational identity, or predicate is one check; vector components are not separately counted.",
+  "fixtures_filename": "manim_fixtures.json",
+  "fixtures_sha256": "d4204afd2e4ee8e8bcac9cd6d5842a4dbe172932a250930516d5f62b1922407b",
+  "fixture_schema_version": "diagnostic-manim-fixtures-v1",
+  "results": {
+    "shared_contract": {
+      "checks": 5,
+      "passed": 5,
+      "failed": 0,
+      "groups": {
+        "schema": {
+          "checks": 2,
+          "passed": 2,
+          "failed": 0
+        },
+        "units": {
+          "checks": 2,
+          "passed": 2,
+          "failed": 0
+        },
+        "categories": {
+          "checks": 1,
+          "passed": 1,
+          "failed": 0
+        }
+      },
+      "errors": [],
+      "details": {},
+      "status": "pass"
+    },
+    "goal_01": {
+      "checks": 68,
+      "passed": 68,
+      "failed": 0,
+      "groups": {
+        "authored_timing": {
+          "checks": 29,
+          "passed": 29,
+          "failed": 0
+        },
+        "exact_encodings": {
+          "checks": 9,
+          "passed": 9,
+          "failed": 0
+        },
+        "probability_domains": {
+          "checks": 8,
+          "passed": 8,
+          "failed": 0
+        },
+        "rational_bayes": {
+          "checks": 7,
+          "passed": 7,
+          "failed": 0
+        },
+        "entropy": {
+          "checks": 3,
+          "passed": 3,
+          "failed": 0
+        },
+        "binary_model": {
+          "checks": 6,
+          "passed": 6,
+          "failed": 0
+        },
+        "expected_information": {
+          "checks": 4,
+          "passed": 4,
+          "failed": 0
+        },
+        "observed_information": {
+          "checks": 2,
+          "passed": 2,
+          "failed": 0
+        }
+      },
+      "errors": [],
+      "details": {
+        "binary_outcomes_checked": 2,
+        "observed_branch_probability": 0.18,
+        "expected_information_gain_bits": 0.21108145213899854,
+        "observed_entropy_increase_bits": 0.9310044064107188
+      },
+      "status": "pass"
+    },
+    "goal_02": {
+      "checks": 105,
+      "passed": 105,
+      "failed": 0,
+      "groups": {
+        "authored_timing": {
+          "checks": 22,
+          "passed": 22,
+          "failed": 0
+        },
+        "binary_contract": {
+          "checks": 6,
+          "passed": 6,
+          "failed": 0
+        },
+        "inverse_updates": {
+          "checks": 10,
+          "passed": 10,
+          "failed": 0
+        },
+        "common_axes": {
+          "checks": 13,
+          "passed": 13,
+          "failed": 0
+        },
+        "exact_encodings": {
+          "checks": 12,
+          "passed": 12,
+          "failed": 0
+        },
+        "rational_updates": {
+          "checks": 12,
+          "passed": 12,
+          "failed": 0
+        },
+        "log_coordinates": {
+          "checks": 9,
+          "passed": 9,
+          "failed": 0
+        },
+        "coordinate_changes": {
+          "checks": 11,
+          "passed": 11,
+          "failed": 0
+        },
+        "screen_displacements": {
+          "checks": 10,
+          "passed": 10,
+          "failed": 0
+        }
+      },
+      "errors": [],
+      "details": {
+        "separate_binary_examples_checked": 3,
+        "common_log_odds_displacement": 1.0986122886681098,
+        "common_log_axis_fraction": 0.15694461266687282
+      },
+      "status": "pass"
+    },
+    "goal_03": {
+      "checks": 224,
+      "passed": 224,
+      "failed": 0,
+      "groups": {
+        "authored_timing": {
+          "checks": 24,
+          "passed": 24,
+          "failed": 0
+        },
+        "rectangle_states": {
+          "checks": 11,
+          "passed": 11,
+          "failed": 0
+        },
+        "rectangle_axes": {
+          "checks": 7,
+          "passed": 7,
+          "failed": 0
+        },
+        "exact_encodings": {
+          "checks": 5,
+          "passed": 5,
+          "failed": 0
+        },
+        "rectangle_maps": {
+          "checks": 35,
+          "passed": 35,
+          "failed": 0
+        },
+        "entropy": {
+          "checks": 6,
+          "passed": 6,
+          "failed": 0
+        },
+        "sweep": {
+          "checks": 130,
+          "passed": 130,
+          "failed": 0
+        },
+        "observed_bayes": {
+          "checks": 2,
+          "passed": 2,
+          "failed": 0
+        },
+        "cross_goal_consistency": {
+          "checks": 4,
+          "passed": 4,
+          "failed": 0
+        }
+      },
+      "errors": [],
+      "details": {
+        "rectangle_states_checked": 5,
+        "sweep_parameter_samples_checked": 41,
+        "sweep_is_hypothetical_distribution_change": true
+      },
+      "status": "pass"
+    },
+    "goal_04": {
+      "checks": 1570,
+      "passed": 1570,
+      "failed": 0,
+      "groups": {
+        "authored_timing": {
+          "checks": 25,
+          "passed": 25,
+          "failed": 0
+        },
+        "model_contract": {
+          "checks": 22,
+          "passed": 22,
+          "failed": 0
+        },
+        "geometry": {
+          "checks": 54,
+          "passed": 54,
+          "failed": 0
+        },
+        "heatmap": {
+          "checks": 16,
+          "passed": 16,
+          "failed": 0
+        },
+        "trace_axes": {
+          "checks": 23,
+          "passed": 23,
+          "failed": 0
+        },
+        "state_structure": {
+          "checks": 20,
+          "passed": 20,
+          "failed": 0
+        },
+        "exact_encodings": {
+          "checks": 72,
+          "passed": 72,
+          "failed": 0
+        },
+        "state_domains": {
+          "checks": 60,
+          "passed": 60,
+          "failed": 0
+        },
+        "state_entropy": {
+          "checks": 20,
+          "passed": 20,
+          "failed": 0
+        },
+        "finding_structure": {
+          "checks": 32,
+          "passed": 32,
+          "failed": 0
+        },
+        "likelihood_domains": {
+          "checks": 32,
+          "passed": 32,
+          "failed": 0
+        },
+        "binary_models": {
+          "checks": 80,
+          "passed": 80,
+          "failed": 0
+        },
+        "frozen_likelihood_replay": {
+          "checks": 32,
+          "passed": 32,
+          "failed": 0
+        },
+        "offline_design_rule": {
+          "checks": 32,
+          "passed": 32,
+          "failed": 0
+        },
+        "information_quantities": {
+          "checks": 80,
+          "passed": 80,
+          "failed": 0
+        },
+        "bridges": {
+          "checks": 560,
+          "passed": 560,
+          "failed": 0
+        },
+        "bridge_trace": {
+          "checks": 80,
+          "passed": 80,
+          "failed": 0
+        },
+        "bridge_endpoints": {
+          "checks": 32,
+          "passed": 32,
+          "failed": 0
+        },
+        "full_path": {
+          "checks": 28,
+          "passed": 28,
+          "failed": 0
+        },
+        "all_outcome_branches": {
+          "checks": 224,
+          "passed": 224,
+          "failed": 0
+        },
+        "narrative_trace_properties": {
+          "checks": 11,
+          "passed": 11,
+          "failed": 0
+        },
+        "encounter_windows": {
+          "checks": 35,
+          "passed": 35,
+          "failed": 0
+        }
+      },
+      "errors": [],
+      "details": {
+        "cases": {
+          "convergence": {
+            "states_checked": 5,
+            "fixed_likelihood_rows_replayed": 4,
+            "complete_outcome_branches_checked": 16,
+            "bridge_samples_checked": 20,
+            "observed_branch_probability": 0.1452482269503546,
+            "entropy_sequence_bits": [
+              1.584962500721156,
+              1.423180286147475,
+              1.1187308789879074,
+              0.7158788458567442,
+              0.38254266919774566
+            ],
+            "full_test_expected_information_gain_bits": 0.4568600599108046
+          },
+          "reopening": {
+            "states_checked": 5,
+            "fixed_likelihood_rows_replayed": 4,
+            "complete_outcome_branches_checked": 16,
+            "bridge_samples_checked": 20,
+            "observed_branch_probability": 0.0451764705882353,
+            "entropy_sequence_bits": [
+              0.5689955935892812,
+              0.9788541494868961,
+              1.278897902987479,
+              1.5,
+              1.5738469904649177
+            ],
+            "full_test_expected_information_gain_bits": 0.13613945115757797
+          },
+          "substitution": {
+            "states_checked": 5,
+            "fixed_likelihood_rows_replayed": 4,
+            "complete_outcome_branches_checked": 16,
+            "bridge_samples_checked": 20,
+            "observed_branch_probability": 0.0512,
+            "entropy_sequence_bits": [
+              0.9219280948873623,
+              1.2361602543738117,
+              1.360964047443681,
+              1.1567796494470395,
+              0.9219280948873623
+            ],
+            "full_test_expected_information_gain_bits": 0.27806777657136705
+          },
+          "persistent_ambiguity": {
+            "states_checked": 5,
+            "fixed_likelihood_rows_replayed": 4,
+            "complete_outcome_branches_checked": 16,
+            "bridge_samples_checked": 20,
+            "observed_branch_probability": 0.13748148148148148,
+            "entropy_sequence_bits": [
+              1.55887184844536,
+              1.5812908992306927,
+              1.5690255736436505,
+              1.578619644737758,
+              1.5822322736472711
+            ],
+            "full_test_expected_information_gain_bits": 0.21666301470706273
+          }
+        },
+        "encounter_windows": [
+          {
+            "window_id": "reopening_segment",
+            "state_indices": [
+              0,
+              1,
+              2
+            ],
+            "visible_finding_indices": [
+              1,
+              2
+            ],
+            "net_entropy_reduction_bits": -0.4390359525563188
+          },
+          {
+            "window_id": "convergence_segment",
+            "state_indices": [
+              2,
+              3,
+              4
+            ],
+            "visible_finding_indices": [
+              3,
+              4
+            ],
+            "net_entropy_reduction_bits": 0.4390359525563188
+          },
+          {
+            "window_id": "whole_path",
+            "state_indices": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "visible_finding_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "net_entropy_reduction_bits": 0.0
+          }
+        ],
+        "bridge_alpha_samples": [
+          0.0,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ],
+        "bridge_samples_are_illustrative_not_observation_times": true
+      },
+      "status": "pass"
+    }
+  },
+  "total_checks": 1972,
+  "passed_checks": 1972,
+  "failed_checks": 0,
+  "status": "pass"
+}

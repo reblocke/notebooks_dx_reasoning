@@ -1,0 +1,164 @@
+{
+  "started_utc": "2026-10-31T17:10:58.570003+00:00",
+  "baseline_snapshot": "/var/folders/vf/n84t7b8171lf64smq4ddvw1m0000gn/T/dx-preflight-20261031-f6g8tmrl",
+  "actions": [
+    {
+      "action": "uv cache prune",
+      "result": "No unused entries found",
+      "free_bytes_after": 4502228992
+    },
+    {
+      "action": "uv cache clean (no force)",
+      "before_bytes": 4514533376,
+      "free_bytes_after": 4704190464,
+      "returncode": 0,
+      "output": "Clearing cache at: /Users/blocke/.cache/uv\nRemoved 29446 files (668.4MiB)\n",
+      "utc": "2026-10-31T17:11:37.318487+00:00"
+    },
+    {
+      "action": "playwright uninstall --all",
+      "active_cache_handles": 0,
+      "lsof_returncode": 0,
+      "before_bytes": 4667854848,
+      "free_bytes_after": 6992850944,
+      "returncode": 0,
+      "output": "Removing unused browser at /Users/blocke/Library/Caches/ms-playwright/chromium-1208\nRemoving unused browser at /Users/blocke/Library/Caches/ms-playwright/chromium-1234\nRemoving unused browser at /Users/blocke/Library/Caches/ms-playwright/chromium-1243\nRemoving unused browser at /Users/blocke/Library/Caches/ms-playwright/chromium_headless_shell-1208\nRemoving unused browser at /Users/blocke/Library/Caches/ms-playwright/chromium_headless_shell-1234\nRemoving unused browser at /Users/blocke/Library/Caches/ms-playwright/chromium_headless_shell-1243\nRemoving unused browser at /Users/blocke/Library/Caches/ms-playwright/ffmpeg-1011\nRemoving unused browser at /Users/blocke/Library/Caches/ms-playwright/firefox-1543\nRemoving unused browser at /Users/blocke/Library/Caches/ms-playwright/webkit-2359\n",
+      "utc": "2026-10-31T17:11:55.023754+00:00"
+    },
+    {
+      "action": "remove verified superseded updater stage",
+      "path": "/Users/blocke/Library/Caches/com.openai.codex/org.sparkle-project.Sparkle/Installation/DvjlGvTDj",
+      "old_build": "22391",
+      "retained_build": "22530",
+      "evidence": "old stage created Oct 27; active updater and retained stage created Oct 29 10:26; no open old-stage files",
+      "active_handles": 0,
+      "before_bytes": 6992089088,
+      "protected_metadata_sha256": {
+        "/Applications/ChatGPT.app/Contents/Info.plist": "0bf9bf6f2a267ba428ca1250b71c9052e5a9e9eca76c75de8f58d9227baf2d1b",
+        "/Users/blocke/Library/Caches/com.openai.codex/org.sparkle-project.Sparkle/Installation/CYz7Wy3zs/dNO6RVFbh/ChatGPT.app/Contents/Info.plist": "d557a4639b8192ef5b69edad941113cbe2a101426e77dc56d871d7e329c41ffe"
+      },
+      "free_bytes_after": 8723841024,
+      "utc": "2026-10-31T17:12:39.704770+00:00"
+    }
+  ],
+  "preserved": [
+    "installed applications",
+    "newest pending updater stage",
+    "configured Codex runtime",
+    "environments",
+    "research data/results/history",
+    "accepted and referenced media"
+  ],
+  "playwright_clients": [
+    {
+      "package": "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/sofa_resp_sim/.venv/lib/python3.11/site-packages/playwright/driver/package",
+      "version": "1.58.0",
+      "restore_command_argv": [
+        "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/sofa_resp_sim/.venv/bin/python",
+        "-m",
+        "playwright",
+        "install"
+      ]
+    },
+    {
+      "package": "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/single_vent_sim/web/node_modules/playwright-core",
+      "version": "1.63.0",
+      "restore_command_argv": [
+        "node",
+        "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/single_vent_sim/web/node_modules/playwright-core/cli.js",
+        "install"
+      ]
+    },
+    {
+      "package": "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/VBG Acid Base Interpreter/.venv/lib/python3.11/site-packages/playwright/driver/package",
+      "version": "1.62.0",
+      "restore_command_argv": [
+        "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/VBG Acid Base Interpreter/.venv/bin/python",
+        "-m",
+        "playwright",
+        "install"
+      ]
+    }
+  ],
+  "setup_gate": {
+    "free_bytes": 8711585792,
+    "minimum_bytes": 8589934592,
+    "passed": true,
+    "utc": "2026-10-31T17:13:24.801646+00:00"
+  },
+  "retention": {
+    "journal": "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/obes-pop-attrib-fract-hypercap/artifacts/triangulation/.retention/cleanup-20261031T171351170177Z.jsonl.gz",
+    "preserved_files_verified": 9849,
+    "removed_files": 0,
+    "status": "applied"
+  },
+  "setup_completed": {
+    "free_bytes": 8309420032,
+    "manim": "0.22.1",
+    "matplotlib": "3.11.2",
+    "python": "3.12",
+    "tex": "unavailable; using local mathtext SVG",
+    "font": "Arial verified via Pango"
+  },
+  "render_storage": {
+    "preview": {
+      "command": [
+        "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/notebooks_dx_reasoning/animations/.venv/bin/python",
+        "-m",
+        "manim",
+        "--renderer",
+        "cairo",
+        "--disable_caching",
+        "--config_file",
+        "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/notebooks_dx_reasoning/animations/manim.cfg",
+        "--media_dir",
+        "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/notebooks_dx_reasoning/animations/output/preflight/media",
+        "--resolution",
+        "854,480",
+        "--fps",
+        "15",
+        "--output_file",
+        "preflight_preview",
+        "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/notebooks_dx_reasoning/animations/scenes/preflight.py",
+        "DiagnosticPreflight"
+      ],
+      "free_bytes_before": 8280801280,
+      "minimum_sampled_free_bytes": 8280473600,
+      "free_bytes_after": 8280457216,
+      "reserve_bytes": 5368709120,
+      "sampling_seconds": 0.5,
+      "returncode": 0
+    },
+    "final": {
+      "command": [
+        "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/notebooks_dx_reasoning/animations/.venv/bin/python",
+        "-m",
+        "manim",
+        "--renderer",
+        "cairo",
+        "--disable_caching",
+        "--config_file",
+        "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/notebooks_dx_reasoning/animations/manim.cfg",
+        "--media_dir",
+        "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/notebooks_dx_reasoning/animations/output/preflight/media",
+        "--resolution",
+        "1920,1080",
+        "--fps",
+        "30",
+        "--output_file",
+        "preflight_final",
+        "/Users/blocke/Box Sync/Residency Personal Files/Scholarly Work/Locke Research Projects/notebooks_dx_reasoning/animations/scenes/preflight.py",
+        "DiagnosticPreflight"
+      ],
+      "free_bytes_before": 8292265984,
+      "minimum_sampled_free_bytes": 8286154752,
+      "free_bytes_after": 8288813056,
+      "reserve_bytes": 5368709120,
+      "sampling_seconds": 0.5,
+      "returncode": 0
+    }
+  },
+  "finished_utc": "2026-10-31T17:19:19.588827+00:00",
+  "final_free_bytes": 7133741056,
+  "preflight_status": "passed"
+}

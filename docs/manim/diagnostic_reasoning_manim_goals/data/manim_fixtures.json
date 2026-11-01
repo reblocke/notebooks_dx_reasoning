@@ -1,0 +1,1727 @@
+{
+  "schema_version": "diagnostic-manim-fixtures-v1",
+  "authored_date": "2026-10-30",
+  "purpose": "Synthetic reference examples for four explanatory films. These are authored specifications, not empirical estimates, implemented animations, or manuscript results.",
+  "absolute_tolerance": 1e-10,
+  "entropy_log_base": 2,
+  "log_odds_log_base": "e",
+  "category_order": [
+    "A",
+    "B",
+    "C"
+  ],
+  "goal_01": {
+    "artifact_slug": "01_uncertainty_increases",
+    "title": "The finding that makes you less certain",
+    "nominal_duration_seconds": 210,
+    "allowed_total_duration_seconds": [
+      189.0,
+      231.00000000000003
+    ],
+    "timing_is_initial_cut": true,
+    "beats": [
+      {
+        "beat_id": "U01",
+        "start": 0,
+        "end": 12
+      },
+      {
+        "beat_id": "U02",
+        "start": 12,
+        "end": 30
+      },
+      {
+        "beat_id": "U03",
+        "start": 30,
+        "end": 48
+      },
+      {
+        "beat_id": "U04",
+        "start": 48,
+        "end": 68
+      },
+      {
+        "beat_id": "U05",
+        "start": 68,
+        "end": 88
+      },
+      {
+        "beat_id": "U06",
+        "start": 88,
+        "end": 107
+      },
+      {
+        "beat_id": "U07",
+        "start": 107,
+        "end": 122
+      },
+      {
+        "beat_id": "U08",
+        "start": 122,
+        "end": 134
+      },
+      {
+        "beat_id": "U09",
+        "start": 134,
+        "end": 157
+      },
+      {
+        "beat_id": "U10",
+        "start": 157,
+        "end": 180
+      },
+      {
+        "beat_id": "U11",
+        "start": 180,
+        "end": 195
+      },
+      {
+        "beat_id": "U12",
+        "start": 195,
+        "end": 210
+      }
+    ],
+    "prior": [
+      0.9,
+      0.05,
+      0.05
+    ],
+    "prior_exact": [
+      "9/10",
+      "1/20",
+      "1/20"
+    ],
+    "prior_entropy_bits": 0.5689955935892812,
+    "branches": [
+      {
+        "outcome": "E",
+        "likelihood": [
+          0.1,
+          0.9,
+          0.9
+        ],
+        "likelihood_exact": [
+          "1/10",
+          "9/10",
+          "9/10"
+        ],
+        "joint_masses": [
+          0.09,
+          0.045,
+          0.045
+        ],
+        "joint_masses_exact": [
+          "9/100",
+          "9/200",
+          "9/200"
+        ],
+        "probability": 0.18,
+        "probability_exact": "9/50",
+        "posterior": [
+          0.5,
+          0.25,
+          0.25
+        ],
+        "posterior_exact": [
+          "1/2",
+          "1/4",
+          "1/4"
+        ],
+        "entropy_bits": 1.5
+      },
+      {
+        "outcome": "not_E",
+        "likelihood": [
+          0.9,
+          0.1,
+          0.1
+        ],
+        "likelihood_exact": [
+          "9/10",
+          "1/10",
+          "1/10"
+        ],
+        "joint_masses": [
+          0.81,
+          0.005,
+          0.005
+        ],
+        "joint_masses_exact": [
+          "81/100",
+          "1/200",
+          "1/200"
+        ],
+        "probability": 0.82,
+        "probability_exact": "41/50",
+        "posterior": [
+          0.9878048780487805,
+          0.006097560975609756,
+          0.006097560975609756
+        ],
+        "posterior_exact": [
+          "81/82",
+          "1/164",
+          "1/164"
+        ],
+        "entropy_bits": 0.10721236762229588
+      }
+    ],
+    "minimum_final_hold_seconds": 7,
+    "expected_posterior_entropy_bits": 0.35791414145028266,
+    "expected_information_gain_bits": 0.21108145213899854,
+    "observed_outcome": "E",
+    "observed_entropy_increase_bits": 0.9310044064107188,
+    "weighted_average_posterior": [
+      0.9,
+      0.05,
+      0.05
+    ]
+  },
+  "goal_02": {
+    "artifact_slug": "02_coordinate_systems",
+    "title": "One piece of evidence, three coordinate systems",
+    "nominal_duration_seconds": 190,
+    "allowed_total_duration_seconds": [
+      171.0,
+      209.00000000000003
+    ],
+    "timing_is_initial_cut": true,
+    "beats": [
+      {
+        "beat_id": "C01",
+        "start": 0,
+        "end": 14
+      },
+      {
+        "beat_id": "C02",
+        "start": 14,
+        "end": 31
+      },
+      {
+        "beat_id": "C03",
+        "start": 31,
+        "end": 58
+      },
+      {
+        "beat_id": "C04",
+        "start": 58,
+        "end": 73
+      },
+      {
+        "beat_id": "C05",
+        "start": 73,
+        "end": 103
+      },
+      {
+        "beat_id": "C06",
+        "start": 103,
+        "end": 119
+      },
+      {
+        "beat_id": "C07",
+        "start": 119,
+        "end": 150
+      },
+      {
+        "beat_id": "C08",
+        "start": 150,
+        "end": 174
+      },
+      {
+        "beat_id": "C09",
+        "start": 174,
+        "end": 190
+      }
+    ],
+    "likelihood_ratio": 3,
+    "inverse_likelihood_ratio": 0.3333333333333333,
+    "examples_are_separate_binary_models": true,
+    "axes": {
+      "probability": [
+        0,
+        1
+      ],
+      "odds": [
+        0,
+        30
+      ],
+      "log_odds": [
+        -3.5,
+        3.5
+      ]
+    },
+    "examples": [
+      {
+        "example_id": "example_1",
+        "label": "Example 1: start 10%",
+        "p_before": 0.1,
+        "p_before_exact": "1/10",
+        "p_after": 0.25,
+        "p_after_exact": "1/4",
+        "odds_before": 0.1111111111111111,
+        "odds_before_exact": "1/9",
+        "odds_after": 0.3333333333333333,
+        "odds_after_exact": "1/3",
+        "log_odds_before": -2.1972245773362196,
+        "log_odds_after": -1.0986122886681098,
+        "probability_change": 0.15,
+        "odds_change": 0.2222222222222222,
+        "log_odds_change": 1.0986122886681098,
+        "screen_displacement_per_axis_width": {
+          "probability": 0.15,
+          "odds": 0.007407407407407407,
+          "log_odds": 0.15694461266687282
+        }
+      },
+      {
+        "example_id": "example_2",
+        "label": "Example 2: start 50%",
+        "p_before": 0.5,
+        "p_before_exact": "1/2",
+        "p_after": 0.75,
+        "p_after_exact": "3/4",
+        "odds_before": 1.0,
+        "odds_before_exact": "1",
+        "odds_after": 3.0,
+        "odds_after_exact": "3",
+        "log_odds_before": 0.0,
+        "log_odds_after": 1.0986122886681098,
+        "probability_change": 0.25,
+        "odds_change": 2.0,
+        "log_odds_change": 1.0986122886681098,
+        "screen_displacement_per_axis_width": {
+          "probability": 0.25,
+          "odds": 0.06666666666666667,
+          "log_odds": 0.15694461266687282
+        }
+      },
+      {
+        "example_id": "example_3",
+        "label": "Example 3: start 90%",
+        "p_before": 0.9,
+        "p_before_exact": "9/10",
+        "p_after": 0.9642857142857143,
+        "p_after_exact": "27/28",
+        "odds_before": 9.0,
+        "odds_before_exact": "9",
+        "odds_after": 27.0,
+        "odds_after_exact": "27",
+        "log_odds_before": 2.1972245773362196,
+        "log_odds_after": 3.295836866004329,
+        "probability_change": 0.06428571428571428,
+        "odds_change": 18.0,
+        "log_odds_change": 1.0986122886681098,
+        "screen_displacement_per_axis_width": {
+          "probability": 0.06428571428571428,
+          "odds": 0.6,
+          "log_odds": 0.15694461266687282
+        }
+      }
+    ]
+  },
+  "goal_03": {
+    "artifact_slug": "03_entropy_area",
+    "title": "Entropy as an area you can see",
+    "nominal_duration_seconds": 210,
+    "allowed_total_duration_seconds": [
+      189.0,
+      231.00000000000003
+    ],
+    "timing_is_initial_cut": true,
+    "beats": [
+      {
+        "beat_id": "E01",
+        "start": 0,
+        "end": 15
+      },
+      {
+        "beat_id": "E02",
+        "start": 15,
+        "end": 40
+      },
+      {
+        "beat_id": "E03",
+        "start": 40,
+        "end": 65
+      },
+      {
+        "beat_id": "E04",
+        "start": 65,
+        "end": 90
+      },
+      {
+        "beat_id": "E05",
+        "start": 90,
+        "end": 115
+      },
+      {
+        "beat_id": "E06",
+        "start": 115,
+        "end": 145
+      },
+      {
+        "beat_id": "E07",
+        "start": 145,
+        "end": 165
+      },
+      {
+        "beat_id": "E08",
+        "start": 165,
+        "end": 180
+      },
+      {
+        "beat_id": "E09",
+        "start": 180,
+        "end": 200
+      },
+      {
+        "beat_id": "E10",
+        "start": 200,
+        "end": 210
+      }
+    ],
+    "axes": {
+      "cumulative_probability": [
+        0,
+        1
+      ],
+      "surprisal_bits": [
+        0,
+        7.2
+      ],
+      "entropy_bits": [
+        0,
+        1.584962500721156
+      ]
+    },
+    "states": {
+      "R0": {
+        "p": [
+          0.5,
+          0.25,
+          0.25
+        ],
+        "p_exact": [
+          "1/2",
+          "1/4",
+          "1/4"
+        ],
+        "surprisal_bits": [
+          1.0,
+          2.0,
+          2.0
+        ],
+        "contribution_bits": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "entropy_bits": 1.5,
+        "rectangle_left_edges": [
+          0,
+          0.5,
+          0.75
+        ]
+      },
+      "R1": {
+        "p": [
+          0.1,
+          0.45,
+          0.45
+        ],
+        "p_exact": [
+          "1/10",
+          "9/20",
+          "9/20"
+        ],
+        "surprisal_bits": [
+          3.321928094887362,
+          1.15200309344505,
+          1.15200309344505
+        ],
+        "contribution_bits": [
+          0.33219280948873625,
+          0.5184013920502726,
+          0.5184013920502726
+        ],
+        "entropy_bits": 1.3689955935892815,
+        "rectangle_left_edges": [
+          0,
+          0.1,
+          0.55
+        ]
+      },
+      "R2": {
+        "p": [
+          0.01,
+          0.495,
+          0.495
+        ],
+        "p_exact": [
+          "1/100",
+          "99/200",
+          "99/200"
+        ],
+        "surprisal_bits": [
+          6.643856189774724,
+          1.0144995696951151,
+          1.0144995696951151
+        ],
+        "contribution_bits": [
+          0.06643856189774724,
+          0.5021772869990819,
+          0.5021772869990819
+        ],
+        "entropy_bits": 1.070793135895911,
+        "rectangle_left_edges": [
+          0,
+          0.01,
+          0.505
+        ]
+      },
+      "U": {
+        "p": [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ],
+        "p_exact": [
+          "1/3",
+          "1/3",
+          "1/3"
+        ],
+        "surprisal_bits": [
+          1.5849625007211563,
+          1.5849625007211563,
+          1.5849625007211563
+        ],
+        "contribution_bits": [
+          0.5283208335737187,
+          0.5283208335737187,
+          0.5283208335737187
+        ],
+        "entropy_bits": 1.584962500721156,
+        "rectangle_left_edges": [
+          0,
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      },
+      "C": {
+        "p": [
+          0.9,
+          0.05,
+          0.05
+        ],
+        "p_exact": [
+          "9/10",
+          "1/20",
+          "1/20"
+        ],
+        "surprisal_bits": [
+          0.15200309344504995,
+          4.321928094887363,
+          4.321928094887363
+        ],
+        "contribution_bits": [
+          0.13680278410054494,
+          0.21609640474436814,
+          0.21609640474436814
+        ],
+        "entropy_bits": 0.5689955935892812,
+        "rectangle_left_edges": [
+          0,
+          0.9,
+          0.95
+        ]
+      }
+    },
+    "parameter_sweep": {
+      "start_state": "R1",
+      "end_state": "R2",
+      "p_A_start": 0.1,
+      "p_A_end": 0.01,
+      "B_and_C_rule": "(1-p_A)/2",
+      "meaning": "Hypothetical distribution sweep; not observations.",
+      "R0_to_R1_transition": "Labeled crossfade between examples; no intermediate numerical claim."
+    },
+    "observed_update": {
+      "prior_state": "C",
+      "likelihood": [
+        0.1,
+        0.9,
+        0.9
+      ],
+      "posterior_state": "R0"
+    }
+  },
+  "goal_04": {
+    "purpose": "Deliberately constructed synthetic three-class vignettes for an explanatory trajectory atlas; not estimates or a method comparison.",
+    "categories": {
+      "labels": [
+        "A",
+        "B",
+        "C"
+      ],
+      "mutually_exclusive": true,
+      "exhaustive": true,
+      "fixed_across_states_and_windows": true
+    },
+    "design_rule": "Offline only: c_t=(4/5)/max_j(q_tj/p_(t-1)j), L_tj=c_t*q_tj/p_(t-1)j. Store L once; runtime uses ordinary Bayes with these fixed values.",
+    "entropy": {
+      "base": 2,
+      "unit": "bits",
+      "minimum": 0,
+      "maximum": 1.584962500721156,
+      "zero_term_convention": "0 log2 0 = 0"
+    },
+    "geometry": {
+      "A": [
+        0,
+        0.8660254037844386
+      ],
+      "B": [
+        -0.5,
+        0
+      ],
+      "C": [
+        0.5,
+        0
+      ],
+      "map": "x=(p_C-p_B)/2; y=sqrt(3)*p_A/2",
+      "inverse": "p_A=2*y/sqrt(3); p_B=(1-p_A)/2-x; p_C=(1-p_A)/2+x"
+    },
+    "bridge": {
+      "formula": "q(alpha)=normalize(p*L**alpha)=normalize(p**(1-alpha)*q**alpha), alpha in [0,1]",
+      "label": "Illustrative within-step transition. State 0 is the initial prior; states 1–4 follow observed findings."
+    },
+    "cases": [
+      {
+        "case_id": "convergence",
+        "labels": [
+          "A",
+          "B",
+          "C"
+        ],
+        "conditional_independence_given_diagnosis": true,
+        "states": [
+          {
+            "step": 0,
+            "p": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333
+            ],
+            "p_exact": [
+              "1/3",
+              "1/3",
+              "1/3"
+            ],
+            "entropy_bits": 1.584962500721156,
+            "barycentric_xy": [
+              0.0,
+              0.28867513459481287
+            ]
+          },
+          {
+            "step": 1,
+            "p": [
+              0.55,
+              0.28,
+              0.17
+            ],
+            "p_exact": [
+              "11/20",
+              "7/25",
+              "17/100"
+            ],
+            "entropy_bits": 1.423180286147475,
+            "barycentric_xy": [
+              -0.05500000000000001,
+              0.4763139720814413
+            ]
+          },
+          {
+            "step": 2,
+            "p": [
+              0.72,
+              0.18,
+              0.1
+            ],
+            "p_exact": [
+              "18/25",
+              "9/50",
+              "1/10"
+            ],
+            "entropy_bits": 1.1187308789879074,
+            "barycentric_xy": [
+              -0.039999999999999994,
+              0.6235382907247957
+            ]
+          },
+          {
+            "step": 3,
+            "p": [
+              0.86,
+              0.09,
+              0.05
+            ],
+            "p_exact": [
+              "43/50",
+              "9/100",
+              "1/20"
+            ],
+            "entropy_bits": 0.7158788458567442,
+            "barycentric_xy": [
+              -0.019999999999999997,
+              0.7447818472546172
+            ]
+          },
+          {
+            "step": 4,
+            "p": [
+              0.94,
+              0.04,
+              0.02
+            ],
+            "p_exact": [
+              "47/50",
+              "1/25",
+              "1/50"
+            ],
+            "entropy_bits": 0.38254266919774566,
+            "barycentric_xy": [
+              -0.01,
+              0.8140638795573722
+            ]
+          }
+        ],
+        "findings": [
+          {
+            "finding_index": 1,
+            "event_id": "convergence_E1",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.8,
+              0.4072727272727273,
+              0.24727272727272728
+            ],
+            "p_observed_given_d_exact": [
+              "4/5",
+              "112/275",
+              "68/275"
+            ],
+            "p_complement_given_d": [
+              0.2,
+              0.5927272727272728,
+              0.7527272727272727
+            ],
+            "p_complement_given_d_exact": [
+              "1/5",
+              "163/275",
+              "207/275"
+            ],
+            "p_observed_given_observed_prefix": 0.48484848484848486,
+            "p_observed_given_observed_prefix_exact": "16/33",
+            "posterior_if_complement": [
+              0.12941176470588237,
+              0.3835294117647059,
+              0.48705882352941177
+            ],
+            "entropy_if_complement_bits": 1.4175089755288708,
+            "realized_entropy_reduction_bits": 0.16178221457368114,
+            "posterior_to_prior_kl_bits": 0.16178221457368103,
+            "expected_entropy_reduction_for_binary_test_bits": 0.1647037988317499
+          },
+          {
+            "finding_index": 2,
+            "event_id": "convergence_E2",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.8,
+              0.39285714285714285,
+              0.35947712418300654
+            ],
+            "p_observed_given_d_exact": [
+              "4/5",
+              "11/28",
+              "55/153"
+            ],
+            "p_complement_given_d": [
+              0.2,
+              0.6071428571428571,
+              0.6405228758169934
+            ],
+            "p_complement_given_d_exact": [
+              "1/5",
+              "17/28",
+              "98/153"
+            ],
+            "p_observed_given_observed_prefix": 0.6111111111111112,
+            "p_observed_given_observed_prefix_exact": "11/18",
+            "posterior_if_complement": [
+              0.28285714285714286,
+              0.43714285714285717,
+              0.28
+            ],
+            "entropy_if_complement_bits": 1.5514162259947644,
+            "realized_entropy_reduction_bits": 0.3044494071595676,
+            "posterior_to_prior_kl_bits": 0.08847614695365977,
+            "expected_entropy_reduction_for_binary_test_bits": 0.13618288332356765
+          },
+          {
+            "finding_index": 3,
+            "event_id": "convergence_E3",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.8,
+              0.33488372093023255,
+              0.33488372093023255
+            ],
+            "p_observed_given_d_exact": [
+              "4/5",
+              "72/215",
+              "72/215"
+            ],
+            "p_complement_given_d": [
+              0.2,
+              0.6651162790697674,
+              0.6651162790697674
+            ],
+            "p_complement_given_d_exact": [
+              "1/5",
+              "143/215",
+              "143/215"
+            ],
+            "p_observed_given_observed_prefix": 0.6697674418604651,
+            "p_observed_given_observed_prefix_exact": "144/215",
+            "posterior_if_complement": [
+              0.436056338028169,
+              0.36253521126760563,
+              0.20140845070422536
+            ],
+            "entropy_if_complement_bits": 1.5184381759152932,
+            "realized_entropy_reduction_bits": 0.40285203313116313,
+            "posterior_to_prior_kl_bits": 0.08045218780341555,
+            "expected_entropy_reduction_for_binary_test_bits": 0.13782081250717715
+          },
+          {
+            "finding_index": 4,
+            "event_id": "convergence_E4",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.8,
+              0.3252955082742317,
+              0.2927659574468085
+            ],
+            "p_observed_given_d_exact": [
+              "4/5",
+              "688/2115",
+              "344/1175"
+            ],
+            "p_complement_given_d": [
+              0.2,
+              0.6747044917257683,
+              0.7072340425531914
+            ],
+            "p_complement_given_d_exact": [
+              "1/5",
+              "1427/2115",
+              "831/1175"
+            ],
+            "p_observed_given_observed_prefix": 0.7319148936170212,
+            "p_observed_given_observed_prefix_exact": "172/235",
+            "posterior_if_complement": [
+              0.6415873015873016,
+              0.22650793650793652,
+              0.1319047619047619
+            ],
+            "entropy_if_complement_bits": 1.2815427637405206,
+            "realized_entropy_reduction_bits": 0.33333617665899856,
+            "posterior_to_prior_kl_bits": 0.047389089201567265,
+            "expected_entropy_reduction_for_binary_test_bits": 0.09232764067519084
+          }
+        ],
+        "probability_of_full_observed_branch": 0.1452482269503546,
+        "probability_of_full_observed_branch_exact": "512/3525",
+        "net_entropy_reduction_bits": 1.2024198315234105,
+        "endpoint_to_initial_kl_bits": 1.2024198315234105
+      },
+      {
+        "case_id": "reopening",
+        "labels": [
+          "A",
+          "B",
+          "C"
+        ],
+        "conditional_independence_given_diagnosis": true,
+        "states": [
+          {
+            "step": 0,
+            "p": [
+              0.9,
+              0.05,
+              0.05
+            ],
+            "p_exact": [
+              "9/10",
+              "1/20",
+              "1/20"
+            ],
+            "entropy_bits": 0.5689955935892812,
+            "barycentric_xy": [
+              0.0,
+              0.7794228634059948
+            ]
+          },
+          {
+            "step": 1,
+            "p": [
+              0.78,
+              0.12,
+              0.1
+            ],
+            "p_exact": [
+              "39/50",
+              "3/25",
+              "1/10"
+            ],
+            "entropy_bits": 0.9788541494868961,
+            "barycentric_xy": [
+              -0.009999999999999995,
+              0.6754998149518622
+            ]
+          },
+          {
+            "step": 2,
+            "p": [
+              0.65,
+              0.2,
+              0.15
+            ],
+            "p_exact": [
+              "13/20",
+              "1/5",
+              "3/20"
+            ],
+            "entropy_bits": 1.278897902987479,
+            "barycentric_xy": [
+              -0.02500000000000001,
+              0.562916512459885
+            ]
+          },
+          {
+            "step": 3,
+            "p": [
+              0.5,
+              0.25,
+              0.25
+            ],
+            "p_exact": [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            "entropy_bits": 1.5,
+            "barycentric_xy": [
+              0.0,
+              0.4330127018922193
+            ]
+          },
+          {
+            "step": 4,
+            "p": [
+              0.38,
+              0.34,
+              0.28
+            ],
+            "p_exact": [
+              "19/50",
+              "17/50",
+              "7/25"
+            ],
+            "entropy_bits": 1.5738469904649177,
+            "barycentric_xy": [
+              -0.03,
+              0.32908965343808666
+            ]
+          }
+        ],
+        "findings": [
+          {
+            "finding_index": 1,
+            "event_id": "reopening_E1",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.28888888888888886,
+              0.8,
+              0.6666666666666666
+            ],
+            "p_observed_given_d_exact": [
+              "13/45",
+              "4/5",
+              "2/3"
+            ],
+            "p_complement_given_d": [
+              0.7111111111111111,
+              0.2,
+              0.3333333333333333
+            ],
+            "p_complement_given_d_exact": [
+              "32/45",
+              "1/5",
+              "1/3"
+            ],
+            "p_observed_given_observed_prefix": 0.3333333333333333,
+            "p_observed_given_observed_prefix_exact": "1/3",
+            "posterior_if_complement": [
+              0.96,
+              0.015,
+              0.025
+            ],
+            "entropy_if_complement_bits": 0.2804695491994134,
+            "realized_entropy_reduction_bits": -0.4098585558976149,
+            "posterior_to_prior_kl_bits": 0.0905324442754627,
+            "expected_entropy_reduction_for_binary_test_bits": 0.05573117762737359
+          },
+          {
+            "finding_index": 2,
+            "event_id": "reopening_E2",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.4,
+              0.8,
+              0.72
+            ],
+            "p_observed_given_d_exact": [
+              "2/5",
+              "4/5",
+              "18/25"
+            ],
+            "p_complement_given_d": [
+              0.6,
+              0.2,
+              0.28
+            ],
+            "p_complement_given_d_exact": [
+              "3/5",
+              "1/5",
+              "7/25"
+            ],
+            "p_observed_given_observed_prefix": 0.48,
+            "p_observed_given_observed_prefix_exact": "12/25",
+            "posterior_if_complement": [
+              0.9,
+              0.046153846153846156,
+              0.05384615384615385
+            ],
+            "entropy_if_complement_bits": 0.5685683387977738,
+            "realized_entropy_reduction_bits": -0.3000437535005829,
+            "posterior_to_prior_kl_bits": 0.06416513014944872,
+            "expected_entropy_reduction_for_binary_test_bits": 0.06932761987806385
+          },
+          {
+            "finding_index": 3,
+            "event_id": "reopening_E3",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.36923076923076925,
+              0.6,
+              0.8
+            ],
+            "p_observed_given_d_exact": [
+              "24/65",
+              "3/5",
+              "4/5"
+            ],
+            "p_complement_given_d": [
+              0.6307692307692307,
+              0.4,
+              0.2
+            ],
+            "p_complement_given_d_exact": [
+              "41/65",
+              "2/5",
+              "1/5"
+            ],
+            "p_observed_given_observed_prefix": 0.48,
+            "p_observed_given_observed_prefix_exact": "12/25",
+            "posterior_if_complement": [
+              0.7884615384615384,
+              0.15384615384615385,
+              0.057692307692307696
+            ],
+            "entropy_if_complement_bits": 0.9232374163813826,
+            "realized_entropy_reduction_bits": -0.22110209701252104,
+            "posterior_to_prior_kl_bits": 0.07546761063652728,
+            "expected_entropy_reduction_for_binary_test_bits": 0.07881444646916003
+          },
+          {
+            "finding_index": 4,
+            "event_id": "reopening_E4",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.4470588235294118,
+              0.8,
+              0.6588235294117647
+            ],
+            "p_observed_given_d_exact": [
+              "38/85",
+              "4/5",
+              "56/85"
+            ],
+            "p_complement_given_d": [
+              0.5529411764705883,
+              0.2,
+              0.3411764705882353
+            ],
+            "p_complement_given_d_exact": [
+              "47/85",
+              "1/5",
+              "29/85"
+            ],
+            "p_observed_given_observed_prefix": 0.5882352941176471,
+            "p_observed_given_observed_prefix_exact": "10/17",
+            "posterior_if_complement": [
+              0.6714285714285714,
+              0.12142857142857143,
+              0.20714285714285716
+            ],
+            "entropy_if_complement_bits": 1.225713951104586,
+            "realized_entropy_reduction_bits": -0.07384699046491772,
+            "posterior_to_prior_kl_bits": 0.046153009535082445,
+            "expected_entropy_reduction_for_binary_test_bits": 0.06950190809521894
+          }
+        ],
+        "probability_of_full_observed_branch": 0.0451764705882353,
+        "probability_of_full_observed_branch_exact": "96/2125",
+        "net_entropy_reduction_bits": -1.0048513968756365,
+        "endpoint_to_initial_kl_bits": 1.1635096038743662
+      },
+      {
+        "case_id": "substitution",
+        "labels": [
+          "A",
+          "B",
+          "C"
+        ],
+        "conditional_independence_given_diagnosis": true,
+        "states": [
+          {
+            "step": 0,
+            "p": [
+              0.8,
+              0.1,
+              0.1
+            ],
+            "p_exact": [
+              "4/5",
+              "1/10",
+              "1/10"
+            ],
+            "entropy_bits": 0.9219280948873623,
+            "barycentric_xy": [
+              0.0,
+              0.6928203230275509
+            ]
+          },
+          {
+            "step": 1,
+            "p": [
+              0.65,
+              0.25,
+              0.1
+            ],
+            "p_exact": [
+              "13/20",
+              "1/4",
+              "1/10"
+            ],
+            "entropy_bits": 1.2361602543738117,
+            "barycentric_xy": [
+              -0.075,
+              0.562916512459885
+            ]
+          },
+          {
+            "step": 2,
+            "p": [
+              0.4,
+              0.5,
+              0.1
+            ],
+            "p_exact": [
+              "2/5",
+              "1/2",
+              "1/10"
+            ],
+            "entropy_bits": 1.360964047443681,
+            "barycentric_xy": [
+              -0.2,
+              0.34641016151377546
+            ]
+          },
+          {
+            "step": 3,
+            "p": [
+              0.2,
+              0.7,
+              0.1
+            ],
+            "p_exact": [
+              "1/5",
+              "7/10",
+              "1/10"
+            ],
+            "entropy_bits": 1.1567796494470395,
+            "barycentric_xy": [
+              -0.3,
+              0.17320508075688773
+            ]
+          },
+          {
+            "step": 4,
+            "p": [
+              0.1,
+              0.8,
+              0.1
+            ],
+            "p_exact": [
+              "1/10",
+              "4/5",
+              "1/10"
+            ],
+            "entropy_bits": 0.9219280948873623,
+            "barycentric_xy": [
+              -0.35000000000000003,
+              0.08660254037844387
+            ]
+          }
+        ],
+        "findings": [
+          {
+            "finding_index": 1,
+            "event_id": "substitution_E1",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.26,
+              0.8,
+              0.32
+            ],
+            "p_observed_given_d_exact": [
+              "13/50",
+              "4/5",
+              "8/25"
+            ],
+            "p_complement_given_d": [
+              0.74,
+              0.2,
+              0.68
+            ],
+            "p_complement_given_d_exact": [
+              "37/50",
+              "1/5",
+              "17/25"
+            ],
+            "p_observed_given_observed_prefix": 0.32,
+            "p_observed_given_observed_prefix_exact": "8/25",
+            "posterior_if_complement": [
+              0.8705882352941177,
+              0.029411764705882353,
+              0.1
+            ],
+            "entropy_if_complement_bits": 0.6558873662037186,
+            "realized_entropy_reduction_bits": -0.31423215948644945,
+            "posterior_to_prior_kl_bits": 0.1357678405135505,
+            "expected_entropy_reduction_for_binary_test_bits": 0.08035340446921391
+          },
+          {
+            "finding_index": 2,
+            "event_id": "substitution_E2",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.24615384615384617,
+              0.8,
+              0.4
+            ],
+            "p_observed_given_d_exact": [
+              "16/65",
+              "4/5",
+              "2/5"
+            ],
+            "p_complement_given_d": [
+              0.7538461538461538,
+              0.2,
+              0.6
+            ],
+            "p_complement_given_d_exact": [
+              "49/65",
+              "1/5",
+              "3/5"
+            ],
+            "p_observed_given_observed_prefix": 0.4,
+            "p_observed_given_observed_prefix_exact": "2/5",
+            "posterior_if_complement": [
+              0.8166666666666667,
+              0.08333333333333333,
+              0.1
+            ],
+            "entropy_if_complement_bits": 0.869553964935036,
+            "realized_entropy_reduction_bits": -0.12480379306986933,
+            "posterior_to_prior_kl_bits": 0.21982411274356317,
+            "expected_entropy_reduction_for_binary_test_bits": 0.17004225643531778
+          },
+          {
+            "finding_index": 3,
+            "event_id": "substitution_E3",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.2857142857142857,
+              0.8,
+              0.5714285714285714
+            ],
+            "p_observed_given_d_exact": [
+              "2/7",
+              "4/5",
+              "4/7"
+            ],
+            "p_complement_given_d": [
+              0.7142857142857143,
+              0.2,
+              0.42857142857142855
+            ],
+            "p_complement_given_d_exact": [
+              "5/7",
+              "1/5",
+              "3/7"
+            ],
+            "p_observed_given_observed_prefix": 0.5714285714285714,
+            "p_observed_given_observed_prefix_exact": "4/7",
+            "posterior_if_complement": [
+              0.6666666666666666,
+              0.23333333333333334,
+              0.1
+            ],
+            "entropy_if_complement_bits": 1.2120594671313871,
+            "realized_entropy_reduction_bits": 0.20418439799664156,
+            "posterior_to_prior_kl_bits": 0.13979877901916915,
+            "expected_entropy_reduction_for_binary_test_bits": 0.18049304756049267
+          },
+          {
+            "finding_index": 4,
+            "event_id": "substitution_E4",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.35,
+              0.8,
+              0.7
+            ],
+            "p_observed_given_d_exact": [
+              "7/20",
+              "4/5",
+              "7/10"
+            ],
+            "p_complement_given_d": [
+              0.65,
+              0.2,
+              0.3
+            ],
+            "p_complement_given_d_exact": [
+              "13/20",
+              "1/5",
+              "3/10"
+            ],
+            "p_observed_given_observed_prefix": 0.7,
+            "p_observed_given_observed_prefix_exact": "7/10",
+            "posterior_if_complement": [
+              0.43333333333333335,
+              0.4666666666666667,
+              0.1
+            ],
+            "entropy_if_complement_bits": 1.3681048373817144,
+            "realized_entropy_reduction_bits": 0.2348515545596772,
+            "posterior_to_prior_kl_bits": 0.054116062353916666,
+            "expected_entropy_reduction_for_binary_test_bits": 0.10099853181137164
+          }
+        ],
+        "probability_of_full_observed_branch": 0.0512,
+        "probability_of_full_observed_branch_exact": "32/625",
+        "net_entropy_reduction_bits": 0.0,
+        "endpoint_to_initial_kl_bits": 2.1000000000000005
+      },
+      {
+        "case_id": "persistent_ambiguity",
+        "labels": [
+          "A",
+          "B",
+          "C"
+        ],
+        "conditional_independence_given_diagnosis": true,
+        "states": [
+          {
+            "step": 0,
+            "p": [
+              0.4,
+              0.35,
+              0.25
+            ],
+            "p_exact": [
+              "2/5",
+              "7/20",
+              "1/4"
+            ],
+            "entropy_bits": 1.55887184844536,
+            "barycentric_xy": [
+              -0.04999999999999999,
+              0.34641016151377546
+            ]
+          },
+          {
+            "step": 1,
+            "p": [
+              0.35,
+              0.3,
+              0.35
+            ],
+            "p_exact": [
+              "7/20",
+              "3/10",
+              "7/20"
+            ],
+            "entropy_bits": 1.5812908992306927,
+            "barycentric_xy": [
+              0.024999999999999994,
+              0.3031088913245535
+            ]
+          },
+          {
+            "step": 2,
+            "p": [
+              0.28,
+              0.4,
+              0.32
+            ],
+            "p_exact": [
+              "7/25",
+              "2/5",
+              "8/25"
+            ],
+            "entropy_bits": 1.5690255736436505,
+            "barycentric_xy": [
+              -0.04000000000000001,
+              0.24248711305964282
+            ]
+          },
+          {
+            "step": 3,
+            "p": [
+              0.36,
+              0.29,
+              0.35
+            ],
+            "p_exact": [
+              "9/25",
+              "29/100",
+              "7/20"
+            ],
+            "entropy_bits": 1.578619644737758,
+            "barycentric_xy": [
+              0.03,
+              0.31176914536239786
+            ]
+          },
+          {
+            "step": 4,
+            "p": [
+              0.33,
+              0.36,
+              0.31
+            ],
+            "p_exact": [
+              "33/100",
+              "9/25",
+              "31/100"
+            ],
+            "entropy_bits": 1.5822322736472711,
+            "barycentric_xy": [
+              -0.024999999999999994,
+              0.28578838324886474
+            ]
+          }
+        ],
+        "findings": [
+          {
+            "finding_index": 1,
+            "event_id": "persistent_ambiguity_E1",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.5,
+              0.4897959183673469,
+              0.8
+            ],
+            "p_observed_given_d_exact": [
+              "1/2",
+              "24/49",
+              "4/5"
+            ],
+            "p_complement_given_d": [
+              0.5,
+              0.5102040816326531,
+              0.2
+            ],
+            "p_complement_given_d_exact": [
+              "1/2",
+              "25/49",
+              "1/5"
+            ],
+            "p_observed_given_observed_prefix": 0.5714285714285714,
+            "p_observed_given_observed_prefix_exact": "4/7",
+            "posterior_if_complement": [
+              0.4666666666666667,
+              0.4166666666666667,
+              0.11666666666666667
+            ],
+            "entropy_if_complement_bits": 1.4009934786687808,
+            "realized_entropy_reduction_bits": -0.022419050785332573,
+            "posterior_to_prior_kl_bits": 0.03575588582881163,
+            "expected_entropy_reduction_for_binary_test_bits": 0.05485127231262976
+          },
+          {
+            "finding_index": 2,
+            "event_id": "persistent_ambiguity_E2",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.48,
+              0.8,
+              0.5485714285714286
+            ],
+            "p_observed_given_d_exact": [
+              "12/25",
+              "4/5",
+              "96/175"
+            ],
+            "p_complement_given_d": [
+              0.52,
+              0.2,
+              0.4514285714285714
+            ],
+            "p_complement_given_d_exact": [
+              "13/25",
+              "1/5",
+              "79/175"
+            ],
+            "p_observed_given_observed_prefix": 0.6,
+            "p_observed_given_observed_prefix_exact": "3/5",
+            "posterior_if_complement": [
+              0.455,
+              0.15,
+              0.395
+            ],
+            "entropy_if_complement_bits": 1.4567826436130846,
+            "realized_entropy_reduction_bits": 0.012265325587042186,
+            "posterior_to_prior_kl_bits": 0.034504567720686795,
+            "expected_entropy_reduction_for_binary_test_bits": 0.057162497599268614
+          },
+          {
+            "finding_index": 3,
+            "event_id": "persistent_ambiguity_E3",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.8,
+              0.45111111111111113,
+              0.6805555555555556
+            ],
+            "p_observed_given_d_exact": [
+              "4/5",
+              "203/450",
+              "49/72"
+            ],
+            "p_complement_given_d": [
+              0.2,
+              0.5488888888888889,
+              0.3194444444444444
+            ],
+            "p_complement_given_d_exact": [
+              "1/5",
+              "247/450",
+              "23/72"
+            ],
+            "p_observed_given_observed_prefix": 0.6222222222222222,
+            "p_observed_given_observed_prefix_exact": "28/45",
+            "posterior_if_complement": [
+              0.14823529411764705,
+              0.5811764705882353,
+              0.27058823529411763
+            ],
+            "entropy_if_complement_bits": 1.3735620963415034,
+            "realized_entropy_reduction_bits": -0.009594071094107592,
+            "posterior_to_prior_kl_bits": 0.04122962557889408,
+            "expected_entropy_reduction_for_binary_test_bits": 0.06787211385558856
+          },
+          {
+            "finding_index": 4,
+            "event_id": "persistent_ambiguity_E4",
+            "observed_outcome": 1,
+            "p_observed_given_d": [
+              0.5907407407407408,
+              0.8,
+              0.5707936507936507
+            ],
+            "p_observed_given_d_exact": [
+              "319/540",
+              "4/5",
+              "899/1575"
+            ],
+            "p_complement_given_d": [
+              0.40925925925925927,
+              0.2,
+              0.4292063492063492
+            ],
+            "p_complement_given_d_exact": [
+              "221/540",
+              "1/5",
+              "676/1575"
+            ],
+            "p_observed_given_observed_prefix": 0.6444444444444445,
+            "p_observed_given_observed_prefix_exact": "29/45",
+            "posterior_if_complement": [
+              0.414375,
+              0.163125,
+              0.4225
+            ],
+            "entropy_if_complement_bits": 1.478551502970886,
+            "realized_entropy_reduction_bits": -0.0036126289095130826,
+            "posterior_to_prior_kl_bits": 0.01659777215262473,
+            "expected_entropy_reduction_for_binary_test_bits": 0.033251645108757
+          }
+        ],
+        "probability_of_full_observed_branch": 0.13748148148148148,
+        "probability_of_full_observed_branch_exact": "464/3375",
+        "net_entropy_reduction_bits": -0.02336042520191106,
+        "endpoint_to_initial_kl_bits": 0.01925033988427117
+      }
+    ],
+    "artifact_slug": "04_trajectory_atlas",
+    "title": "An atlas of diagnostic trajectories",
+    "nominal_duration_seconds": 285,
+    "allowed_total_duration_seconds": [
+      256.5,
+      313.5
+    ],
+    "timing_is_initial_cut": true,
+    "beats": [
+      {
+        "beat_id": "A01",
+        "start": 0,
+        "end": 15
+      },
+      {
+        "beat_id": "A02",
+        "start": 15,
+        "end": 45
+      },
+      {
+        "beat_id": "A03",
+        "start": 45,
+        "end": 65
+      },
+      {
+        "beat_id": "A04",
+        "start": 65,
+        "end": 100
+      },
+      {
+        "beat_id": "A05",
+        "start": 100,
+        "end": 135
+      },
+      {
+        "beat_id": "A06",
+        "start": 135,
+        "end": 170
+      },
+      {
+        "beat_id": "A07",
+        "start": 170,
+        "end": 205
+      },
+      {
+        "beat_id": "A08",
+        "start": 205,
+        "end": 235
+      },
+      {
+        "beat_id": "A09",
+        "start": 235,
+        "end": 270
+      },
+      {
+        "beat_id": "A10",
+        "start": 270,
+        "end": 285
+      }
+    ],
+    "minimum_final_hold_seconds": 7,
+    "entropy_trace_axes": {
+      "observed_finding_index": [
+        0,
+        4
+      ],
+      "entropy_bits": [
+        0,
+        1.65
+      ]
+    },
+    "encounter_windows": [
+      {
+        "window_id": "reopening_segment",
+        "case_id": "substitution",
+        "state_indices": [
+          0,
+          1,
+          2
+        ],
+        "visible_finding_indices": [
+          1,
+          2
+        ],
+        "hidden_prefix_indices": []
+      },
+      {
+        "window_id": "convergence_segment",
+        "case_id": "substitution",
+        "state_indices": [
+          2,
+          3,
+          4
+        ],
+        "visible_finding_indices": [
+          3,
+          4
+        ],
+        "hidden_prefix_indices": [
+          1,
+          2
+        ]
+      },
+      {
+        "window_id": "whole_path",
+        "case_id": "substitution",
+        "state_indices": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "visible_finding_indices": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "hidden_prefix_indices": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "package": "diagnostic_reasoning_manim_goals",
+  "version": "1.0",
+  "authored_date": "2026-10-30",
+  "contents": "Implementation specifications and checked synthetic fixtures; no Manim scene implementation or rendered media.",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 6130,
+      "sha256": "ea967a9fd46028c101916fd3ec87dc25bc40ee00e21745078fbf9c890c3dadad"
+    },
+    {
+      "path": "data/manim_fixtures.json",
+      "bytes": 44366,
+      "sha256": "d4204afd2e4ee8e8bcac9cd6d5842a4dbe172932a250930516d5f62b1922407b"
+    },
+    {
+      "path": "prompts/00_build_all_films.md",
+      "bytes": 2996,
+      "sha256": "62e3ef53997ca86f1097291794f90d321819726e85e00028cc237dd5752409c4"
+    },
+    {
+      "path": "prompts/01_uncertainty_increases.md",
+      "bytes": 1572,
+      "sha256": "d9920d27fbd44b97a11a07e72fe10d8afc8cdfb85ac3f9b7d109b1cd05daa809"
+    },
+    {
+      "path": "prompts/02_coordinate_systems.md",
+      "bytes": 1584,
+      "sha256": "4fee992febff021616e0dbbb2a91a66b109daf84426adb85c1b2ab0a484553ec"
+    },
+    {
+      "path": "prompts/03_entropy_area.md",
+      "bytes": 1593,
+      "sha256": "2c1c364b43ef9e1ba2f7683d5e07ffc81a5092557c0c3e1073a3fa58190b006e"
+    },
+    {
+      "path": "prompts/04_trajectory_atlas.md",
+      "bytes": 1695,
+      "sha256": "47b01828aa7e1d2838ececcee9856141c6adee8f1ffca2a9880a408df60c6275"
+    },
+    {
+      "path": "specs/00_shared_contract.md",
+      "bytes": 17176,
+      "sha256": "3ab61b629a561b32603eecf50f4b490b08edbcd51b8752dff7e2758c502bf6b4"
+    },
+    {
+      "path": "specs/01_uncertainty_increases.md",
+      "bytes": 23106,
+      "sha256": "c130f44241b0b3e8b716e80972c2a8206faa8e078b15eecc398b9265ad37b0fa"
+    },
+    {
+      "path": "specs/02_coordinate_systems.md",
+      "bytes": 18206,
+      "sha256": "e8a889361b3ece32a7b82ce73350ba13d8ddbfdb57aee032ea5829bdd9621821"
+    },
+    {
+      "path": "specs/03_entropy_area.md",
+      "bytes": 12838,
+      "sha256": "42843b821f704a46547cb794fd297ec7b7ba76fb88a21cfd45f08443cf9ad449"
+    },
+    {
+      "path": "specs/04_trajectory_atlas.md",
+      "bytes": 15131,
+      "sha256": "78a754ea82d81d2ef0383973d57be766113d3f60a9608c5659ccc985b9d804ed"
+    },
+    {
+      "path": "specs/05_atlas_mathematics.md",
+      "bytes": 14301,
+      "sha256": "68f841a44f37420be7b6ec5d4e4eb934341f76d8ca4d9e138978e1cb6a3a6a14"
+    },
+    {
+      "path": "validation/fixture_verification.json",
+      "bytes": 11371,
+      "sha256": "15e90aee28109b270dd33db83c8fb8c1e66bacfd391854b260cd04b32ba9a6b0"
+    },
+    {
+      "path": "validation/verify_fixtures.py",
+      "bytes": 38880,
+      "sha256": "a22b411f15f35c491c9e343faf379f13bd651018d8fa0ecba3896e48d82e8730"
+    }
+  ]
+}

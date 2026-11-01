@@ -1,1 +1,13 @@
 .DS_Store
+.venv/
+.ipynb_checkpoints/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+tmp/
+
+# Local animation renders and reproducible media caches
+/animations/output/
+/animations/media/
+# Manim's default cache when geometry checks run from the repository root
+/media/

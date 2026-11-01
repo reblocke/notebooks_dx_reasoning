@@ -1,0 +1,62 @@
+{
+  "time_utc": "2026-11-01T16:02:52.928026+00:00",
+  "python": "3.12.14 (main, Sep 24 2026, 17:46:32) [Clang 22.1.3 ]",
+  "manim": "0.22.1",
+  "tests": {
+    "animation": 46,
+    "visual_nonrendering": 8,
+    "fixture_checks": 1972
+  },
+  "strict_preflight": [
+    {
+      "video": "/Volumes/LOCKE STATION/diagnostic-reasoning/migration/20261101/host_preflight/animations/output/preflight/preflight_preview.mp4",
+      "status": "passed",
+      "timeline": {
+        "status": "passed",
+        "frame_count": 180,
+        "first_pts": 0,
+        "last_pts": 183296,
+        "time_base": "1/15360",
+        "expected_duration": 12
+      }
+    },
+    {
+      "video": "/Volumes/LOCKE STATION/diagnostic-reasoning/migration/20261101/host_preflight/animations/output/preflight/preflight_final.mp4",
+      "status": "passed",
+      "timeline": {
+        "status": "passed",
+        "frame_count": 360,
+        "first_pts": 0,
+        "last_pts": 183808,
+        "time_base": "1/15360",
+        "expected_duration": 12
+      }
+    }
+  ],
+  "visual_review": "sampled final frames inspected: fonts, fractions, log subscripts, captions, probability ruler, 0.500/0.586/0.667 values readable; no clipping observed",
+  "normal_speed_playback": "pending",
+  "external_free_bytes": 1557471297536,
+  "internal_free_bytes": 6094725120,
+  "visual_review_time_utc": "2026-11-01T16:04:07.281354+00:00",
+  "recorded_at_utc": "2026-11-01T16:06:32.023714+00:00",
+  "host": "Brians-Mac-mini.local",
+  "host_id": "remote-control:env_e_6a073d25b1ac8329bdaf83126d713757",
+  "checkout": "/Volumes/LOCKE STATION/diagnostic-reasoning/notebooks_dx_reasoning",
+  "branch": "codex/mini-clinical-films",
+  "base_commit": "689b6d017c42da28d6815dfe3c7a57933f5e23cc",
+  "volume_uuid": "4F16BA40-1497-4E5E-A6E8-4B8AEEAF4B44",
+  "new_chat_id": "01a197da-a4ee-79e2-b665-b0cdbce432d3",
+  "new_chat_title": "Finish clinical diagnostic reasoning films on Mini",
+  "continuation_chat_ready": true,
+  "clinical_exports_status": "All four clinical cuts have source and narration; reviewed final exports remain pending. Continue in the named Mini chat.",
+  "python_patch_note": "3.12.16 was unavailable in installed uv; used CPython 3.12.14, satisfying >=3.12,<3.13. Lockfile unchanged.",
+  "migration_records": "/Volumes/LOCKE STATION/diagnostic-reasoning/migration/20261101",
+  "initial_transfer": {
+    "source_files": 182,
+    "source_bytes": 4190103,
+    "artifact_files": 619,
+    "artifact_bytes": 167901414,
+    "sha256_acceptance": "passed for every file",
+    "working_index_status": "identical to Air at transfer"
+  }
+}

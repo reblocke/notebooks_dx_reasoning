@@ -1,0 +1,8 @@
+{
+  "coherent": {"prior": [0.5, 0.3, 0.2], "likelihood": [0.8, 0.2, 0.1]},
+  "common_reference": {"prior": [0.5, 0.3, 0.2], "likelihood": [0.4, 0.2, 0.1]},
+  "binary": {"prior": [0.2, 0.8], "ovr": [4.0, 0.25], "posterior": [0.5, 0.5]},
+  "two_findings": {"prior": [0.5, 0.3, 0.2], "likelihood1": [0.8, 0.2, 0.1], "likelihood2": [0.7, 0.2, 0.3]},
+  "worked": {"prior": [0.5, 0.3, 0.2], "ovr": [4.0, 3.0, 2.0]},
+  "tail": {"prior": [0.5, 0.3, 0.2], "ovr": [1e14, 1e-14, 1e-14]}
+}
