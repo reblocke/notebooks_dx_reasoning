@@ -33,6 +33,9 @@ There are no patient-level data, clinical records, or protected health informati
 | `requirements.txt` | Python package dependencies for Binder/local runs. |
 | `runtime.txt` | Binder Python runtime pin. |
 | `postBuild` | Binder setup for ipywidgets and Voila extensions. |
+| `diagnostic_reasoning.py` | Shared validated calculations and qualitative teaching constants. |
+| `requirements-dev.txt`, `tests/` | Independent numerical fixtures and notebook callback checks. |
+| `scripts/render_worked_examples.py` | Reproduce the two corrected worked-example attachments. |
 
 ## Data and Codebook
 
@@ -67,9 +70,10 @@ For durable teaching links, replace `HEAD` in Binder URLs with a commit SHA or r
 Create an environment with Python 3.11, then install dependencies:
 
 ```bash
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+export JUPYTER_PREFER_ENV_PATH=1
 jupyter lab
 ```
 
@@ -93,6 +97,7 @@ Runtime requirements are listed in `requirements.txt`:
 | `matplotlib`, `scienceplots` | Plots and visual styling. |
 | `ipywidgets` | Interactive notebook controls. |
 | `voila` | Read-only app rendering from notebooks. |
+| `jupyterlab` | The documented local JupyterLab entry point. |
 
 Binder uses Python 3.11 from `runtime.txt`.
 
@@ -106,7 +111,7 @@ Suggested citation:
 
 ## License
 
-Code and original teaching text are released under the [MIT License](./LICENSE). Third-party package names and Binder badges remain under their respective owners' terms.
+Code and original teaching text are released under the [Apache License 2.0](./LICENSE). Third-party package names and Binder badges remain under their respective owners' terms.
 
 ## Contributing
 
@@ -115,3 +120,47 @@ Issues and pull requests that improve clarity, mathematical correctness, accessi
 ## Contact
 
 Maintainer: Brian W. Locke (`@reblocke`)
+
+## Calculation contracts and checks
+
+Run these notebooks from a repository checkout: `diagnostic_reasoning.py` supplies the
+shared calculations and teaching constants. Entered priors are relative weights,
+normalized without clipping. OVR fitting requires at least two strictly positive
+prior weights and positive LRs. Common-reference updates preserve structural zero
+support. All-zero priors, malformed arrays, nonfinite values and zero confidence
+weights are rejected.
+
+OVR LRs refer to the displayed prior-weighted complementary mixture for one
+observation. Common-reference scores are class log likelihoods or log LRs with
+one shared denominator. The two inputs are not interchangeable. Count-based
+scores are illustrative teaching heuristics. Combining standalone binary LRs
+requires conditional independence within disease and its complement; dependent
+findings require history-conditioned likelihoods.
+
+OVR fitting returns a coherent **candidate**, not a minimum certificate or clinical
+calibration. The retained loss is weighted squared natural-log LR error plus
+baseline-dependent ridge; its default is unchanged, and the UI permits zero ridge.
+Reported data RMSE excludes ridge. Symmetric inconsistent inputs are flagged,
+without selecting an arbitrary winning diagnosis. See the
+[repair verification record](docs/repair_verification.md) for ticket coverage and limits.
+
+Prefer the active environment's kernels over any older user-registered `python3`
+kernel (`JUPYTER_PREFER_ENV_PATH=1`); this changes only the current shell.
+Install the test dependencies in the Python 3.11 environment, then run:
+
+```bash
+pip install -r requirements-dev.txt
+export JUPYTER_PREFER_ENV_PATH=1
+python -m pytest -q tests/unit
+python -m pytest -q tests/notebooks
+jupyter lab --version
+voila coherent_multi_class.ipynb --no-browser
+# Alternatively:
+voila log_odds_evidence_applet.ipynb --no-browser
+```
+
+The numerical tests use independent Bayes references. Notebook tests use fresh
+kernels and exercise registered callbacks after later cells run and after supported
+re-execution orders. Executed test notebooks remain temporary; test execution does
+not rewrite stored notebook outputs. Regenerate the two corrected worked-example
+attachments intentionally with `python scripts/render_worked_examples.py`.

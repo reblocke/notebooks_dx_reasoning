@@ -1,0 +1,40 @@
+{
+  "notebooks_dx_reasoning": {
+    "baseline_files": 44,
+    "intentionally_changed": [
+      ".gitignore",
+      "diagnostic_reasoning.py",
+      "display_reasoning.ipynb",
+      "docs/manim/implementation_log.md",
+      "docs/manim/review_followup_plan.md",
+      "docs/repair_verification.md",
+      "log_odds_evidence_applet.ipynb",
+      "tests/notebooks/test_notebooks.py",
+      "tests/unit/test_reasoning.py"
+    ],
+    "unchanged_files": 35,
+    "unexpected_changes": [],
+    "staged_state": "preserved"
+  },
+  "obes-pop-attrib-fract-hypercap": {
+    "baseline_files": 4369,
+    "intentionally_changed": [
+      "WORKLOG.md",
+      "docs/ARTIFACT_RETENTION.md",
+      "scripts/retain_bmi_artifacts.py",
+      "tests/run_retention_e2e.py"
+    ],
+    "unchanged_files": 4365,
+    "unexpected_changes": [],
+    "staged_state": "preserved"
+  },
+  "dx_chat_entropy": {
+    "baseline_files": 957,
+    "intentionally_changed": [],
+    "unchanged_files": 957,
+    "unexpected_changes": [],
+    "staged_state": "preserved"
+  },
+  "notebook_cell_preservation": "verified",
+  "bundle_payload_hashes": 15
+}
