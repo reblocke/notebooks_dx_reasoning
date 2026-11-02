@@ -1406,3 +1406,31 @@ CI suites pass. Codex review found no actionable issues on `d1492eb` and the CFR
 follow-up `a8d6121`; later scene/document changes still require latest-head review.
 All 1,791 inventoried earlier package files were rehashed and remain unchanged.
 Draft PR #3 remains unmerged pending the remaining production gates.
+
+### Film 05 accepted; film 06 preview production — November 1, 2026
+
+The user explicitly reported “Corrected final acceptable after watching” for
+film 05's replacement final. Its listening receipt records that statement and
+the movie/narration hashes. The finalizer verified the frozen fixture, matching
+preview/final producer maps, sidecars and strict receipts, then assembled the
+package with `acceptance_status: reviewed` and no pending gates. No film 06
+production render started before this completion.
+
+Film 06's 49 measured phrases fit its 180-second schedule. Closing narration
+ends at 175.186 seconds, leaving silence within the stationary closing hold.
+The first preview was archived after inspection found overlapping legend
+crossfades and evidence animations lagging the measured speech. The replacement
+uses sequential legend fades, earlier negative and conditional updates, and a
+threshold crossing during the corresponding narrated sentence. The conditional
+LR calculation is displayed explicitly. Audio, receipt and SRT/VTT bytes are
+unchanged across these visual/timing revisions.
+
+The corrected preview passes strict decoding with 2,700 frames and no source
+timestamp error. Frame inspection covers leaf endpoints, equal-unit logit
+offsets, the distinct conditional finding, utility changes, fixed belief during
+changing costs, equivalent threshold rulers and the last decoded frame.
+Complete normal-speed preview visual/subtitle playback has passed. Fresh user
+listening acceptance remains pending at this checkpoint. Film 06 final
+production, final acceptance and merge remain pending. Latest production state
+is also retained outside Git in
+`migration/20261101/films_05_06_current.json`.
