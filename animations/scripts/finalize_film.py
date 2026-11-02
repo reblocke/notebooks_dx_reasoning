@@ -7,13 +7,43 @@ from pathlib import Path
 import re
 import shutil
 import sys
+from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from core.provenance import MANIFEST, source_files_for_film as render_source_files, verify_render_sources
+from core.films import film_for_slug
 
 FIXTURE_HASH = 'd4204afd2e4ee8e8bcac9cd6d5842a4dbe172932a250930516d5f62b1922407b'
+
+
+def fixture_contract(slug, scene):
+    if slug[:2] in ('01', '02', '03', '04'):
+        return 'data/manim_fixtures.json', FIXTURE_HASH
+    film = film_for_slug(slug)
+    if scene != film.scene:
+        raise ValueError('Scene does not match registered film')
+    return film.fixture_path, film.fixture_hash
+
+
+def validate_segmented_tracks(timing, narration, tracks):
+    from core.subtitles import subtitle_rows, normalized
+    from core.cues import timestamp
+    cues = [SimpleNamespace(**row) for row in timing['cues']]
+    rows = subtitle_rows(cues, narration)
+    if rows != timing.get('subtitle_intervals'):
+        raise ValueError('Subtitle timing differs from measured narration')
+    pattern = r'(\d\d:\d\d:\d\d[,.]\d{3}) --> (\d\d:\d\d:\d\d[,.]\d{3})\n([^\n]+(?:\n[^\n]+)*)'
+    for track in tracks:
+        parsed = re.findall(pattern, track)
+        if len(parsed) != len(rows):
+            raise ValueError('Wrong number of measured subtitle segments')
+        for row, (start, end, text) in zip(rows, parsed):
+            if (start.replace(',', '.') != timestamp(row['start'], '.')
+                    or end.replace(',', '.') != timestamp(row['end'], '.')
+                    or normalized(text) != normalized(row['text'])):
+                raise ValueError('Subtitle text or timing differs from measured segment')
 
 
 def digest(path):
@@ -54,8 +84,9 @@ def main():
     args=parser.parse_args()
     root=ROOT/'output'/args.slug
     timing=json.loads((root/f'{args.slug}_timing.json').read_text())
-    fixture=ROOT/'data/manim_fixtures.json'
-    if digest(fixture)!=FIXTURE_HASH: raise ValueError('Fixture identity changed')
+    fixture_path, fixture_hash = fixture_contract(args.slug, args.scene)
+    if args.slug[:2] in ('01', '02', '03', '04') and digest(ROOT/fixture_path) != fixture_hash:
+        raise ValueError('Fixture identity changed')
     previews={q:json.loads((root/f'{args.slug}_{q}_probe.json').read_text()) for q in ('preview','final')}
     storage = {}
     strict_receipts = {}
@@ -93,6 +124,10 @@ def main():
         producer_sources[q] = verify_render_sources(
             storage[q], movie, root, slug=args.slug, scene=args.scene,
             audio_expected=timing.get('audio_expected', False))
+        frozen, source_record = producer_sources[q]
+        if (source_record['source_sha256'].get(fixture_path) != fixture_hash
+                or digest(frozen/fixture_path) != fixture_hash):
+            raise ValueError('Rendered fixture identity differs from the approved fixture')
     final_snapshot, final_sources = producer_sources['final']
     if producer_sources['preview'][1] != final_sources:
         raise ValueError('Preview and final were rendered from different source inputs')
@@ -102,7 +137,12 @@ def main():
         h, m, seconds = text.replace(',', '.').split(':')
         return int(h)*3600 + int(m)*60 + float(seconds)
     pattern = r'(\d\d:\d\d:\d\d[,.]\d{3}) --> (\d\d:\d\d:\d\d[,.]\d{3})'
-    for track in (srt, vtt):
+    narration_record = None
+    if timing.get('audio_expected'):
+        narration_record = json.loads((root/f'{args.slug}_narration_audio.json').read_text())
+    if narration_record and 'subtitle_intervals' in narration_record:
+        validate_segmented_tracks(timing, narration_record, (srt, vtt))
+    for track in (() if narration_record and 'subtitle_intervals' in narration_record else (srt, vtt)):
         intervals = re.findall(pattern, track)
         if len(intervals) != len(timing['cues']):
             raise ValueError('Wrong number of sidecar cues')
@@ -140,14 +180,14 @@ def main():
                      if args.allow_pending_playback else [])
     payload={'slug':args.slug,'acceptance_status':acceptance_status,'pending_gates':pending_gates,
              'python':sys.version,'manim':importlib.metadata.version('manim'),
-             'renderer':'cairo','fixture_sha256':FIXTURE_HASH,'duration_seconds':timing['duration_seconds'],
+             'renderer':'cairo','fixture_path':fixture_path,'fixture_sha256':fixture_hash,'duration_seconds':timing['duration_seconds'],
              'final_hold_seconds':timing['final_hold_seconds'], 'renders':previews, 'render_storage_and_commands':storage,
              'strict_decode_receipts':strict_receipts, 'narration':narration_record,
              'source_sha256':final_sources['source_sha256'],
              'input_sha256':final_sources['input_sha256'],
              'source_snapshot':str(snapshot), 'review_note':args.review_note}
     (root/f'{args.slug}_manifest.json').write_text(json.dumps(payload,indent=2)+'\n')
-    qa=f'''# {args.slug} quality review\n\n{args.review_note}\n\n## Verification\n\n- Fixture SHA-256: `{FIXTURE_HASH}`; production calculations tested independently.\n- Preview and final videos each passed full-file decoding, frame-rate, resolution and duration checks.\n- Timing and narration sidecars use the same beat/cue definitions; all narration text appears in both formats.\n- Actual commands, source hashes and video hashes are in the companion manifest and probe records.\n- Stored state and transition samples, plus the final hold, are in the keyframe folders.\n- Labels, colors and values refer to authored synthetic examples and do not establish clinical calibration.\n'''
+    qa=f'''# {args.slug} quality review\n\n{args.review_note}\n\n## Verification\n\n- Fixture: `{fixture_path}`; SHA-256: `{fixture_hash}`. Production calculations tested independently.\n- Preview and final videos each passed full-file decoding, frame-rate, resolution and duration checks.\n- Timing and narration sidecars use the same beat/cue definitions; all narration text appears in both formats.\n- Actual commands, source hashes and video hashes are in the companion manifest and probe records.\n- Stored state and transition samples, plus the final hold, are in the keyframe folders.\n- Labels, colors and values refer to authored synthetic examples and do not establish clinical calibration.\n'''
     if args.allow_pending_playback:
         qa = '**Playback/listening review pending; this package is not a completed film.**\n\n' + qa
     (root/f'{args.slug}_qa.md').write_text(qa)

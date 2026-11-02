@@ -1327,3 +1327,43 @@ workspace and all prior Git refs were copied and bundle-verified outside the
 checkout before edits. GitHub's older README topic branch is confirmed as the
 already-merged PR #1 head; its tree matches the existing `main` tree. Publication,
 follow-up review and consolidation to canonical `main` follow these local checks.
+
+
+## Films 05–06 implementation and preview work — 2026-11-01
+
+The user approved two full narrated films (175 and 180 seconds), shorter measured
+subtitle segments, preservation of existing packages, and source publication
+through a reviewed PR followed by consolidation to main. The supplied briefs and
+audit are retained in `new_video_goals_20261101/`; the addendum distinguishes their
+historical branch descriptions from the current checkout. The missing reference
+plate was reconstructed from formulas and visually inspected as a storyboard
+reference, not a movie frame.
+
+Before editing, a verified all-refs bundle and hashes for 1,791 existing package
+files were recorded outside the checkout in
+`migration/20261101/films_05_06_20261102T012853Z/`. The task branch is
+`codex/films-05-06`, based on `c2cbf0e`. Earlier accepted films and narration have
+not been rewritten.
+
+Implementation adds explicit goal/cut registration, separate exact fixtures and
+codebooks, pure calculations, the two clinical scenes, shared event timing,
+measured phrase narration/subtitles, and fixture-aware frozen-source finalization.
+The original Cue representation and old-goal defaults remain supported. New
+subtitle receipts bind segmentation as well as voice, timing and audio. Review
+extraction includes event triplets and the actual last decoded frame.
+
+The mathematical and pipeline suite passed 99 tests, including snapshot-isolated
+imports and rejection of tampered inputs. Twelve geometry checks initially passed;
+a thirteenth was added after actual preview inspection found lingering late-added
+Manim children. The corrected cleanup uses the actual scene inventory, including
+non-vector wait placeholders. A separate negative-group label/border collision
+was also corrected. Superseded previews and the failed intermediate attempt are
+retained under the new film's attempts directory. The immutable fixture validator
+passed all 1,972 checks. The original fixture hash remains unchanged.
+
+Film 05 narration contains 43 measured segments. All fit the original 175-second
+schedule; closing speech ends at 172.096 seconds. Its complete preview is under
+review. Film 06 source is implemented but has not entered production. Native
+playback access is currently blocked by the locked Mini; user unlock was requested.
+Playback/listening and final-production gates remain pending. Source review may
+proceed in a draft PR; merge remains contingent on actual production acceptance.

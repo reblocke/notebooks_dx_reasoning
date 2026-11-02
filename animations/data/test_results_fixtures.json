@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "goal_05": {
+    "states": [
+      "condition present",
+      "condition absent"
+    ],
+    "profiles": [
+      {
+        "id": "B",
+        "description": "High specificity, low sensitivity",
+        "provenance": "Constructed synthetic teaching profile; not an empirical performance estimate",
+        "sensitivity": {
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        "specificity": {
+          "numerator": 99,
+          "denominator": 100,
+          "value": 0.99
+        },
+        "observed_result": "+",
+        "lr_positive": {
+          "numerator": 2,
+          "denominator": 1,
+          "value": 2.0
+        },
+        "lr_negative": {
+          "numerator": 98,
+          "denominator": 99,
+          "value": 0.98989898989899
+        },
+        "examples": [
+          {
+            "prior": {
+              "numerator": 1,
+              "denominator": 10,
+              "value": 0.1
+            },
+            "posterior_positive": {
+              "numerator": 2,
+              "denominator": 11,
+              "value": 0.18181818181818182
+            },
+            "posterior_negative": {
+              "numerator": 98,
+              "denominator": 989,
+              "value": 0.09908998988877654
+            }
+          }
+        ],
+        "counts": {
+          "disease_positive": 2,
+          "disease_negative": 98,
+          "no_disease_positive": 9,
+          "no_disease_negative": 891,
+          "disease_total": 100,
+          "no_disease_total": 900,
+          "population": 1000
+        }
+      },
+      {
+        "id": "A",
+        "description": "High sensitivity, low specificity",
+        "provenance": "Constructed synthetic teaching profile; not an empirical performance estimate",
+        "sensitivity": {
+          "numerator": 99,
+          "denominator": 100,
+          "value": 0.99
+        },
+        "specificity": {
+          "numerator": 1,
+          "denominator": 50,
+          "value": 0.02
+        },
+        "observed_result": "-",
+        "lr_positive": {
+          "numerator": 99,
+          "denominator": 98,
+          "value": 1.010204081632653
+        },
+        "lr_negative": {
+          "numerator": 1,
+          "denominator": 2,
+          "value": 0.5
+        },
+        "examples": [
+          {
+            "prior": {
+              "numerator": 1,
+              "denominator": 10,
+              "value": 0.1
+            },
+            "posterior_positive": {
+              "numerator": 11,
+              "denominator": 109,
+              "value": 0.10091743119266056
+            },
+            "posterior_negative": {
+              "numerator": 1,
+              "denominator": 19,
+              "value": 0.05263157894736842
+            }
+          }
+        ],
+        "counts": {
+          "disease_positive": 99,
+          "disease_negative": 1,
+          "no_disease_positive": 882,
+          "no_disease_negative": 18,
+          "disease_total": 100,
+          "no_disease_total": 900,
+          "population": 1000
+        }
+      },
+      {
+        "id": "C",
+        "description": "Stronger positive result",
+        "provenance": "Constructed synthetic teaching profile; not an empirical performance estimate",
+        "sensitivity": {
+          "numerator": 4,
+          "denominator": 5,
+          "value": 0.8
+        },
+        "specificity": {
+          "numerator": 23,
+          "denominator": 25,
+          "value": 0.92
+        },
+        "observed_result": "+",
+        "lr_positive": {
+          "numerator": 10,
+          "denominator": 1,
+          "value": 10.0
+        },
+        "lr_negative": {
+          "numerator": 5,
+          "denominator": 23,
+          "value": 0.21739130434782608
+        },
+        "examples": [
+          {
+            "prior": {
+              "numerator": 1,
+              "denominator": 100,
+              "value": 0.01
+            },
+            "posterior_positive": {
+              "numerator": 10,
+              "denominator": 109,
+              "value": 0.09174311926605505
+            },
+            "posterior_negative": {
+              "numerator": 5,
+              "denominator": 2282,
+              "value": 0.0021910604732690623
+            }
+          },
+          {
+            "prior": {
+              "numerator": 1,
+              "denominator": 2,
+              "value": 0.5
+            },
+            "posterior_positive": {
+              "numerator": 10,
+              "denominator": 11,
+              "value": 0.9090909090909091
+            },
+            "posterior_negative": {
+              "numerator": 5,
+              "denominator": 28,
+              "value": 0.17857142857142858
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

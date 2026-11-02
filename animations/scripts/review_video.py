@@ -115,12 +115,20 @@ def main():
         images.append((cue['beat_id'],sample,img.copy()))
     for event in timing.get('events', []):
         if event.get('settled', event['start']) > event['start']:
-            seconds = (event['start'] + event['settled']) / 2
-            subprocess.run(['ffmpeg','-v','error','-y','-ss',str(seconds),'-i',str(movie),'-frames:v','1',str(frames/f"event_{event['id']}.png")],check=True)
+            for phase, seconds in [('before', max(0,event['start']-1/fps)),
+                                   ('during', (event['start']+event['settled'])/2),
+                                   ('after', min(timing['duration_seconds']-1/fps,event['settled']+1/fps))]:
+                subprocess.run(['ffmpeg','-v','error','-y','-ss',str(seconds),'-i',str(movie),'-frames:v','1',str(frames/f"event_{event['id']}_{phase}.png")],check=True)
     for item in timing.get('extra_keyframes', []):
         subprocess.run(['ffmpeg','-v','error','-y','-ss',str(item['time']),'-i',str(movie),'-frames:v','1',str(frames/f"extra_{item['id']}.png")],check=True)
     final=frames/'final_hold.png'
     subprocess.run(['ffmpeg','-v','error','-y','-ss',str(timing['duration_seconds']-1),'-i',str(movie),'-frames:v','1',str(final)],check=True)
+    timeline = strict['video_timeline']
+    last_time = float(timeline['last_pts'] * Fraction(timeline['time_base']))
+    # Select the actual decoded final frame by index, avoiding approximate seeks.
+    subprocess.run(['ffmpeg','-v','error','-y','-i',str(movie),'-vf',
+                    f"select=eq(n\\,{timeline['frame_count']-1})",'-frames:v','1',
+                    str(frames/'last_decoded_frame.png')],check=True)
     sheet=Image.new('RGB',(426*3,270*((len(images)+2)//3)),'#111827')
     draw=ImageDraw.Draw(sheet)
     try: font=ImageFont.truetype('/System/Library/Fonts/Supplemental/Arial.ttf',19)
@@ -132,7 +140,8 @@ def main():
     report={'video':str(movie),'sha256':hashlib.sha256(movie.read_bytes()).hexdigest(),
             'bytes':movie.stat().st_size,'codec':strict['codec'],'width':width,'height':height,
             'fps':fps,'duration':strict['duration'],'full_decode':'passed',
-            'keyframes':str(frames),'visual_review':'pending','frame_review':'pending',
+            'keyframes':str(frames),'last_decoded_frame_time':last_time,
+            'visual_review':'pending','frame_review':'pending',
             'playback_review':'pending',
             'audio_review':'pending' if timing.get('audio_expected') else 'not_applicable'}
     (root/f'{args.slug}_{args.quality}_probe.json').write_text(json.dumps(report,indent=2)+'\n')

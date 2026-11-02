@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "goal_06": {
+    "provenance": "Constructed binary pneumonia teaching model; all test rates and utilities illustrative",
+    "states": [
+      "pneumonia",
+      "no pneumonia"
+    ],
+    "sensitivity": {
+      "numerator": 3,
+      "denominator": 5,
+      "value": 0.6
+    },
+    "specificity": {
+      "numerator": 4,
+      "denominator": 5,
+      "value": 0.8
+    },
+    "lr_positive": {
+      "numerator": 3,
+      "denominator": 1,
+      "value": 3.0
+    },
+    "lr_negative": {
+      "numerator": 1,
+      "denominator": 2,
+      "value": 0.5
+    },
+    "examples": [
+      {
+        "prior": {
+          "numerator": 1,
+          "denominator": 10,
+          "value": 0.1
+        },
+        "positive": {
+          "numerator": 1,
+          "denominator": 4,
+          "value": 0.25
+        },
+        "negative": {
+          "numerator": 1,
+          "denominator": 19,
+          "value": 0.05263157894736842
+        },
+        "positive_change": {
+          "numerator": 3,
+          "denominator": 20,
+          "value": 0.15
+        },
+        "utility_prior": {
+          "numerator": -1,
+          "denominator": 2,
+          "value": -0.5
+        },
+        "utility_positive": {
+          "numerator": 1,
+          "denominator": 4,
+          "value": 0.25
+        },
+        "utility_negative": {
+          "numerator": -14,
+          "denominator": 19,
+          "value": -0.7368421052631579
+        },
+        "utility_change": {
+          "numerator": 3,
+          "denominator": 4,
+          "value": 0.75
+        }
+      },
+      {
+        "prior": {
+          "numerator": 1,
+          "denominator": 2,
+          "value": 0.5
+        },
+        "positive": {
+          "numerator": 3,
+          "denominator": 4,
+          "value": 0.75
+        },
+        "negative": {
+          "numerator": 1,
+          "denominator": 3,
+          "value": 0.3333333333333333
+        },
+        "positive_change": {
+          "numerator": 1,
+          "denominator": 4,
+          "value": 0.25
+        },
+        "utility_prior": {
+          "numerator": 3,
+          "denominator": 2,
+          "value": 1.5
+        },
+        "utility_positive": {
+          "numerator": 11,
+          "denominator": 4,
+          "value": 2.75
+        },
+        "utility_negative": {
+          "numerator": 2,
+          "denominator": 3,
+          "value": 0.6666666666666666
+        },
+        "utility_change": {
+          "numerator": 5,
+          "denominator": 4,
+          "value": 1.25
+        }
+      },
+      {
+        "prior": {
+          "numerator": 9,
+          "denominator": 10,
+          "value": 0.9
+        },
+        "positive": {
+          "numerator": 27,
+          "denominator": 28,
+          "value": 0.9642857142857143
+        },
+        "negative": {
+          "numerator": 9,
+          "denominator": 11,
+          "value": 0.8181818181818182
+        },
+        "positive_change": {
+          "numerator": 9,
+          "denominator": 140,
+          "value": 0.06428571428571428
+        },
+        "utility_prior": {
+          "numerator": 7,
+          "denominator": 2,
+          "value": 3.5
+        },
+        "utility_positive": {
+          "numerator": 107,
+          "denominator": 28,
+          "value": 3.8214285714285716
+        },
+        "utility_negative": {
+          "numerator": 34,
+          "denominator": 11,
+          "value": 3.090909090909091
+        },
+        "utility_change": {
+          "numerator": 9,
+          "denominator": 28,
+          "value": 0.32142857142857145
+        }
+      }
+    ],
+    "conditional_finding": {
+      "given": "first positive result",
+      "disease_probability": {
+        "numerator": 4,
+        "denominator": 5,
+        "value": 0.8
+      },
+      "no_disease_probability": {
+        "numerator": 2,
+        "denominator": 5,
+        "value": 0.4
+      },
+      "lr": {
+        "numerator": 2,
+        "denominator": 1,
+        "value": 2.0
+      },
+      "posterior": {
+        "numerator": 2,
+        "denominator": 5,
+        "value": 0.4
+      }
+    },
+    "utilities": [
+      {
+        "benefit": 4,
+        "cost": 1,
+        "probability_threshold": {
+          "numerator": 1,
+          "denominator": 5,
+          "value": 0.2
+        },
+        "odds_threshold": {
+          "numerator": 1,
+          "denominator": 4,
+          "value": 0.25
+        },
+        "gain_at_quarter": {
+          "numerator": 1,
+          "denominator": 4,
+          "value": 0.25
+        }
+      },
+      {
+        "benefit": 4,
+        "cost": 4,
+        "probability_threshold": {
+          "numerator": 1,
+          "denominator": 2,
+          "value": 0.5
+        },
+        "odds_threshold": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "gain_at_quarter": {
+          "numerator": -2,
+          "denominator": 1,
+          "value": -2.0
+        }
+      }
+    ]
+  }
+}
