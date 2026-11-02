@@ -14,9 +14,23 @@ from core.narration import write_narrated_sidecars
 from core.narration import make_narration
 from core.provenance import capture_render_sources, input_names, digest, verify_render_sources
 from scripts.finalize_film import fixture_contract, validate_segmented_tracks
-from render import apply_clinical_timing
+from render import apply_clinical_timing, check_source_cadence
 
 ROOT=Path(__file__).resolve().parents[1]
+
+
+def test_concat_rounding_can_be_normalized_without_hiding_timeline_defects():
+    # Real final export had a five-tick shift after a partial-movie boundary.
+    frames=[{'best_effort_timestamp': i*512-(5 if i>=10 else 0)} for i in range(30)]
+    result=check_source_cadence(frames,'1/15360',30,1)
+    assert result['maximum_timestamp_error_seconds']==pytest.approx(5/15360)
+    for altered in (frames[:-1],frames+[frames[-1]]):
+        with pytest.raises(ValueError,match='frame count'):
+            check_source_cadence(altered,'1/15360',30,1)
+    for shift in (512,-512,32):
+        altered=copy.deepcopy(frames);altered[10]['best_effort_timestamp']+=shift
+        with pytest.raises(ValueError,match='cadence'):
+            check_source_cadence(altered,'1/15360',30,1)
 
 
 @pytest.mark.parametrize('goal',['05','06'])

@@ -17,6 +17,30 @@ RESERVE = 5 * 2**30
 CLINICAL_HEADROOM = 256 * 2**20
 
 
+def check_source_cadence(frames, time_base, fps, duration):
+    """Allow sub-millisecond concat rounding, never missing or displaced frames."""
+    from fractions import Fraction
+    expected = Fraction(str(duration)) * fps
+    if expected.denominator != 1 or len(frames) != expected.numerator:
+        raise ValueError('Source video frame count differs from the story duration')
+    tick = Fraction(time_base)
+    errors = [abs(int(frame['best_effort_timestamp']) * tick - Fraction(i, fps))
+              for i, frame in enumerate(frames)]
+    maximum = max(errors)
+    if tick <= 0 or maximum > Fraction(1, 1000):
+        raise ValueError('Source video cadence differs by more than concat rounding')
+    return {'frame_count': len(frames), 'maximum_timestamp_error_seconds': float(maximum),
+            'allowed_timestamp_error_seconds': .001}
+
+
+def inspect_source_cadence(movie, fps, duration):
+    command = ['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_frames',
+               '-show_streams', '-show_entries',
+               'frame=best_effort_timestamp:stream=time_base', '-of', 'json', str(movie)]
+    data = json.loads(subprocess.check_output(command, text=True, stderr=subprocess.PIPE))
+    return check_source_cadence(data['frames'], data['streams'][0]['time_base'], fps, duration)
+
+
 def clinical_timing(goal):
     if goal in ('05', '06'):
         data = importlib.import_module(f'core.story{goal}_clinical').story()
@@ -200,6 +224,7 @@ def main():
     samples = [free, free_before_launch]
     status = "failed"
     mux_command = None
+    source_cadence = None
     render_sources = capture_render_sources(ROOT, output, slug, source, clinical, args.quality)
     snapshot = Path(render_sources['snapshot'])
     samples.append(shutil.disk_usage(ROOT).free)
@@ -224,9 +249,17 @@ def main():
         if len(rendered) != 1:
             raise RuntimeError("Expected exactly one complete preflight export.")
         if clinical:
+            video_options = ['-c:v', 'copy']
+            if args.goal in ('05', '06'):
+                # Manim's concatenated partials can carry millisecond-container
+                # rounding. Preserve every decoded frame on the exact CFR grid.
+                source_cadence = inspect_source_cadence(rendered[0], fps, cues[-1].end)
+                video_options = ['-vf', f'setpts=N/({fps}*TB)', '-r', str(fps),
+                                 '-fps_mode', 'cfr', '-c:v', 'libx264', '-crf', '18',
+                                 '-pix_fmt', 'yuv420p']
             mux_command = ['ffmpeg', '-v', 'error', '-xerror', '-i', str(rendered[0]),
                            '-i', str(snapshot / f'{slug}_narration.wav'), '-map', '0:v:0',
-                           '-map', '1:a:0', '-c:v', 'copy', '-c:a', 'aac', '-ar', '48000',
+                           '-map', '1:a:0', *video_options, '-c:a', 'aac', '-ar', '48000',
                            '-ac', '1', '-b:a', '128k', '-t', str(cues[-1].end), '-movflags', '+faststart',
                            '-y', str(output / f'{name}.mp4')]
             mux = subprocess.Popen(mux_command, cwd=ROOT, start_new_session=True)
@@ -253,6 +286,7 @@ def main():
             stop_render(process)
         (output / f"{name}_storage.json").write_text(json.dumps({
             "render_sources": render_sources,
+            "source_cadence": source_cadence,
             "video_sha256": digest(output / f'{name}.mp4') if status == 'complete' else None,
             "command": command, "mux_command": mux_command, "free_bytes_before": free,
             "minimum_sampled_free_bytes": min(samples),
