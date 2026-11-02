@@ -4,7 +4,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import math
 
-from manim import (VGroup, FadeIn, FadeOut, Line, DashedLine, Dot, Arrow,
+from manim import (VGroup, FadeIn, FadeOut, Succession, Line, DashedLine, Dot, Arrow,
                    GrowArrow, ValueTracker, always_redraw, linear)
 from core.components import label, MUTED
 from core.teaching_scene import TeachingScene, lines
@@ -42,7 +42,7 @@ class ClinicalBeliefsActions(TeachingScene):
         self.cue(2,'Read the result from the starting belief')
         guide=leaf_guide(axes,.1,3)
         positive_note=notes(['Patient 1','10% → 25%','Positive result','LR+ = 3'],top=1.8,spacing=.9,size=29)
-        self.event('positive_read',FadeOut(legend),FadeIn(guide),FadeIn(positive_note))
+        self.event('positive_read',Succession(FadeOut(legend),FadeIn(positive_note)),FadeIn(guide))
         self.body.remove(legend);self.body.add(guide,positive_note)
         self.event('negative_reset',FadeOut(guide),FadeOut(positive_note))
         self.body.remove(guide,positive_note)
@@ -69,12 +69,13 @@ class ClinicalBeliefsActions(TeachingScene):
                         Dot(log_axes.c2p(x,y),radius=.055,color=POSITIVE))
         offsets.add(Arrow(log_axes.c2p(0,0),log_axes.c2p(0,-math.log(2)),buff=0,color=NEGATIVE,tip_length=.08))
         offsets_note=notes(['Positive offset: +ln 3','≈ +1.099','Negative offset: −ln 2','≈ −0.693'],top=1.8,spacing=.8,size=26)
-        self.event('log_offsets',FadeOut(legend),FadeIn(offsets),FadeIn(offsets_note))
+        self.event('log_offsets',Succession(FadeOut(legend),FadeIn(offsets_note)),FadeIn(offsets))
         self.body.remove(legend);self.body.add(offsets,offsets_note)
 
         self.cue(4,'A distinct second finding')
         ruler=VGroup(label('New finding • LR conditional on the first result',27).move_to([0,2.2,0]),
                      label('P(E₂ | disease, E₁) = 0.8     P(E₂ | no disease, E₁) = 0.4',24,MUTED).move_to([0,1.5,0]),
+                     label('Conditional LR₂ = 0.8 / 0.4 = 2',24,MUTED).move_to([0,1.0,0]),
                      Line([-4,0,0],[4,0,0],color=MUTED))
         sx=lambda z:-4+2*(z+3)
         for z in (-3,-2,-1,0,1):
@@ -106,7 +107,7 @@ class ClinicalBeliefsActions(TeachingScene):
         self.cue(6,'The action changes at a threshold')
         threshold=threshold_mark(ua)
         info2=notes(['Threshold: 20%','At 20%: indifferent','Illustrative consequences'],top=1.7,spacing=.9,size=26)
-        self.event('threshold',FadeOut(info),FadeIn(threshold),FadeIn(info2))
+        self.event('threshold',Succession(FadeOut(info),FadeIn(info2)),FadeIn(threshold))
         self.body.remove(info);self.body.add(threshold,info2)
         p=ValueTracker(.1)
         def belief_mark():
