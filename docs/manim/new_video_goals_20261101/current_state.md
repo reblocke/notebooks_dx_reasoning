@@ -13,8 +13,9 @@ are preserved.
 The user also selected shorter measured subtitle segments. Story cues remain
 eight for 05 and twelve for 06. Each phrase is synthesized and measured locally;
 the segment list must concatenate to the complete cue narration. Legacy Cue
-records and narration behavior remain unchanged. Full acceptance still requires
-fresh preview/final playback and listening evidence.
+records and narration behavior remain unchanged. Both films were subsequently
+finalized after full preview/final visual playback and user-reported listening
+acceptance. Their local manifests and review receipts record the evidence.
 
 The mentioned reference image, SVG, generator and ZIP were not attached. The
 assets in this directory are newly generated from the specified formulas, not
