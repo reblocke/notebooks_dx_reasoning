@@ -34,6 +34,12 @@ implementation. The finalizer checks the approved fixture in each frozen
 producer snapshot, never merely comparing a newly calculated live hash to itself.
 Legacy fixture identity checks remain intact.
 
+For 05/06, the audio export also places decoded video frames on an exact CFR
+grid. Before doing so, it requires the complete expected frame count and allows
+at most 1 ms of Manim partial-clip timestamp rounding. Missing frames or larger
+offsets fail; the finished movie must still pass the unchanged strict version-3
+timeline check. The source-cadence measurements are retained in storage receipts.
+
 For 05/06, the eight/twelve story cues contain shorter explicit speech segments.
 Every segment is synthesized and measured; one/two-line SRT and VTT entries use
 those measured intervals. Receipts bind cue text, segmentation, voice/rate and

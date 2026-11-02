@@ -1367,3 +1367,42 @@ review. Film 06 source is implemented but has not entered production. Native
 playback access is currently blocked by the locked Mini; user unlock was requested.
 Playback/listening and final-production gates remain pending. Source review may
 proceed in a draft PR; merge remains contingent on actual production acceptance.
+
+### Mini playback and export corrections — November 1, 2026, continued
+
+The Mini was unlocked. The user watched film 05's corrected preview and reported
+“Acceptable after watching.” That acceptance is bound to the narration WAV,
+receipt and timing hashes. Subsequent sequential-fade and CFR-only revisions
+retain those exact audio/timing inputs; their replacement previews were played
+from beginning to terminal frame at normal speed with intermittent screenshots.
+The agent cannot receive audio and does not claim an independent listening pass.
+
+The first 1080p candidate decoded but failed the strict timestamp check: after a
+Manim partial-clip boundary, 1,157 timestamps were five 1/15360-second ticks early.
+All 5,250 frames were present. The rejected movie and receipt are archived.
+The new-film export now checks exact source frame count and a maximum 1 ms
+timestamp offset before placing every frame on the exact CFR grid. Strict final
+verification was not relaxed. The replacement preview and final both pass,
+with exactly matching producer source and narration/sidecar hash maps.
+
+Native and 720p final frame inspection confirms readable denominators, selected
+person counts, posteriors, common probability scales and closing composition.
+The current final SHA-256 is
+`dbafa3de511e250dceba00dcce44728a972f8996e870136b8523e72182192916`.
+Fresh final listening acceptance was requested for this corrected candidate;
+it remains pending at this checkpoint. Local review HTML displays the authored
+VTT beneath the movie, avoiding overlap with burned-in explanatory captions.
+
+Film 06 remains before production. Its scene now explicitly changes the
+act/defer label at the threshold and uses a probability ruler before the
+equivalent log-odds ruler. Natural phrase boundaries preserve all narration
+wording. The updated scene's dry run covers exactly 180 seconds; focused checks
+pass. Its preview/final listening and production gates have not been claimed.
+
+The full animation suite passes 100 tests. CI geometry checks exposed an existing
+zero-coordinate assertion with no absolute tolerance; a 1e-10 tolerance admits
+platform floating-point roundoff without changing rendered output. Both GitHub
+CI suites pass. Codex review found no actionable issues on `d1492eb` and the CFR
+follow-up `a8d6121`; later scene/document changes still require latest-head review.
+All 1,791 inventoried earlier package files were rehashed and remain unchanged.
+Draft PR #3 remains unmerged pending the remaining production gates.
