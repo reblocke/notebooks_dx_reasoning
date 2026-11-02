@@ -10,7 +10,7 @@ from core.components import label, MUTED
 from core.teaching_scene import TeachingScene, lines
 from core.leaf_components import (leaf_axes, result_curve, leaf_guide, utility_axes,
     utility_line, utility_mark, threshold_mark, POSITIVE, NEGATIVE)
-from core.decision_math import utility_difference, thresholds
+from core.decision_math import utility_difference, thresholds, preference
 from core.math import binary_update, log_odds
 from core.story06_clinical import story
 
@@ -111,7 +111,9 @@ class ClinicalBeliefsActions(TeachingScene):
         p=ValueTracker(.1)
         def belief_mark():
             prob=p.get_value();gain=utility_difference(prob)
-            return VGroup(utility_mark(ua,prob),label(f'{prob:.1%}   G = {gain:+.2f}',26).move_to([3.4,-1.5,0]))
+            return VGroup(utility_mark(ua,prob),
+                          label(f'{prob:.1%}   G = {gain:+.2f}\n{preference(prob).capitalize()}',
+                                26).move_to([3.4,-1.5,0]))
         moving=always_redraw(belief_mark);self.add(moving);self.body.add(moving)
         self.event('threshold_crossing',p.animate(rate_func=linear).set_value(.25));moving.clear_updaters(recursive=True)
         negative_mark=utility_mark(ua,1/19)
@@ -144,16 +146,24 @@ class ClinicalBeliefsActions(TeachingScene):
             c=cost.get_value();threshold=thresholds(4,c)['probability'];gain=utility_difference(.25,4,c)
             labels=notes(['Probability stays 25%',f'Benefit 4; cost {c:.2f}',
                           f'Threshold: {threshold:.1%}',f'G(25%) = {gain:+.2f}',
-                          'Act' if gain>0 else ('Defer' if gain<0 else 'Indifferent')],top=1.9,spacing=.8,size=26)
+                          preference(.25,4,c).capitalize()],top=1.9,spacing=.8,size=26)
             return VGroup(utility_line(ua,c),threshold_mark(ua,c),utility_mark(ua,.25,c),labels)
         dynamic=always_redraw(changing_cost)
         self.replace_body('fixed_belief',VGroup(plot,fixed,dynamic))
         self.event('changed_cost',cost.animate(rate_func=linear).set_value(4));dynamic.clear_updaters(recursive=True)
 
         self.cue(9,'The same decision in different coordinates')
-        plot,ua=utility_axes()
-        reset=VGroup(plot,utility_line(ua),threshold_mark(ua),utility_mark(ua,.25),
-                     notes(['Reset: B = 4, C = 1','25% > 20%','Preferred action: act'],top=1.7,spacing=1,size=28))
+        px=lambda probability:-4+8*probability
+        reset=VGroup(label('Reset: B = 4, C = 1',29).move_to([0,2.25,0]),
+                     Line([-4,.8,0],[4,.8,0],color=MUTED))
+        for probability in (0,.2,.5,1):
+            reset.add(label(f'{probability:.0%}',20,MUTED).move_to([px(probability),.45,0]))
+        reset.add(DashedLine([px(.2),0,0],[px(.2),1.4,0],color=NEGATIVE),
+                  Dot([px(.25),.8,0],color=POSITIVE),
+                  label('Threshold 20%',24,NEGATIVE).move_to([px(.2)-.7,-.5,0]),
+                  label('Posterior 25%',24,POSITIVE).move_to([px(.25)+1.2,1.6,0]),
+                  label('25% > 20%: preferred action is act',29).move_to([0,-1.4,0]),
+                  label('Probability available at the decision',24,MUTED).move_to([0,-2.2,0]))
         self.replace_body('reset_consequences',reset)
         ruler=VGroup(label('Natural-log odds: same posterior, same threshold',26,MUTED).move_to([0,2.25,0]),
                      Line([-4,.8,0],[4,.8,0],color=MUTED))
