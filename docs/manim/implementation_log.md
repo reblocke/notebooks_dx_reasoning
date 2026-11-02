@@ -1331,6 +1331,15 @@ follow-up review and consolidation to canonical `main` follow these local checks
 
 ## Films 05–06 implementation and preview work — 2026-11-01
 
+**Current production status:** Film 05 is finalized and reviewed. Film 06's
+corrected preview has passed strict decoding and complete visual/subtitle
+playback review; fresh user listening acceptance is pending. Film 06's final
+has not been rendered or accepted. Source consolidation does not pass these
+remaining production gates. See the most recent checkpoint below and the local
+output receipts for evidence.
+
+### Earlier implementation checkpoint (historical)
+
 The user approved two full narrated films (175 and 180 seconds), shorter measured
 subtitle segments, preservation of existing packages, and source publication
 through a reviewed PR followed by consolidation to main. The supplied briefs and
@@ -1363,12 +1372,12 @@ passed all 1,972 checks. The original fixture hash remains unchanged.
 
 Film 05 narration contains 43 measured segments. All fit the original 175-second
 schedule; closing speech ends at 172.096 seconds. Its complete preview is under
-review. Film 06 source is implemented but has not entered production. Native
-playback access is currently blocked by the locked Mini; user unlock was requested.
+review. At that point film 06 had not entered production. Native playback access
+was blocked by the locked Mini; user unlock was requested.
 Playback/listening and final-production gates remain pending. Source review may
 proceed in a draft PR; merge remains contingent on actual production acceptance.
 
-### Mini playback and export corrections — November 1, 2026, continued
+### Earlier playback and export checkpoint (historical) — November 1, 2026
 
 The Mini was unlocked. The user watched film 05's corrected preview and reported
 “Acceptable after watching.” That acceptance is bound to the narration WAV,
@@ -1393,7 +1402,7 @@ Fresh final listening acceptance was requested for this corrected candidate;
 it remains pending at this checkpoint. Local review HTML displays the authored
 VTT beneath the movie, avoiding overlap with burned-in explanatory captions.
 
-Film 06 remains before production. Its scene now explicitly changes the
+At that checkpoint film 06 remained before production. Its scene now explicitly changes the
 act/defer label at the threshold and uses a probability ruler before the
 equivalent log-odds ruler. Natural phrase boundaries preserve all narration
 wording. The updated scene's dry run covers exactly 180 seconds; focused checks
