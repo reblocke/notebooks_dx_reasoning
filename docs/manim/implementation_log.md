@@ -1331,12 +1331,12 @@ follow-up review and consolidation to canonical `main` follow these local checks
 
 ## Films 05–06 implementation and preview work — 2026-11-01
 
-**Current production status:** Film 05 is finalized and reviewed. Film 06's
-corrected preview has passed strict decoding and complete visual/subtitle
-playback review; fresh user listening acceptance is pending. Film 06's final
-has not been rendered or accepted. Source consolidation does not pass these
-remaining production gates. See the most recent checkpoint below and the local
-output receipts for evidence.
+**Current production status:** Films 05 and 06 are finalized and reviewed. The
+user accepted both previews and both finals after watching with sound. The agent
+could inspect visual playback but could not receive audio. Each local package
+retains the user listening statements, reviewed probes, strict decode receipts,
+matching producer snapshots, and its reviewed manifest. See the completion
+record below for the final hashes and validation.
 
 ### Earlier implementation checkpoint (historical)
 
@@ -1416,7 +1416,7 @@ follow-up `a8d6121`; later scene/document changes still require latest-head revi
 All 1,791 inventoried earlier package files were rehashed and remain unchanged.
 Draft PR #3 remains unmerged pending the remaining production gates.
 
-### Film 05 accepted; film 06 preview production — November 1, 2026
+### Film 05 accepted; film 06 preview checkpoint (historical) — November 1, 2026
 
 The user explicitly reported “Corrected final acceptable after watching” for
 film 05's replacement final. Its listening receipt records that statement and
@@ -1443,3 +1443,33 @@ listening acceptance remains pending at this checkpoint. Film 06 final
 production, final acceptance and merge remain pending. Latest production state
 is also retained outside Git in
 `migration/20261101/films_05_06_current.json`.
+
+### Films 05 and 06 completed — November 1, 2026
+
+The user reported “Film 06 preview acceptable after watching” and separately
+“Film 06 final acceptable after watching.” These user-reported listening
+acceptances are bound to the respective movie and narration hashes; the agent
+could not hear the session's audio. The corrected preview and final completed
+normal-speed visual/subtitle playback, and selected native 1080p and 720p frames
+were inspected for probability and log-odds geometry, conditional evidence,
+utility thresholds, fixed belief under changing costs, and closing behavior.
+
+Film 06 is 180 seconds. Its strict version-3 checks decoded all 2,700 preview
+frames and 5,400 final frames on the required timelines. Its preview and final
+producer source and input hash maps match; the independent fixture hash is
+`86ec0d9fd6553915c92bc70f1fc3af40a3df0424ef7d26772f3df54a39384251`.
+The 49 measured phrase subtitles cover all 12 cues. Closing speech ends at
+175.186 seconds; the remaining audio was measured silent. Superseded candidates,
+review evidence, keyframes, contact sheets, the actual last decoded frames,
+receipts and frozen producer sources remain in the local output package.
+
+Both finalizers produced manifests with `acceptance_status: reviewed` and no
+pending gates. Film 05 final SHA-256:
+`dbafa3de511e250dceba00dcce44728a972f8996e870136b8523e72182192916`.
+Film 06 final SHA-256:
+`ffb146091d3181a8f8d9be4e5821c0bf9d727c5ef10007a1274956f372ef2991`.
+The post-production package audit checked movie/receipt bindings, producer
+snapshots, fixture identities, narration and subtitle coverage, review records,
+and the 1,791 inventoried earlier artifact files. The latter remain unchanged.
+The films' source changes were squash-merged in PR #3; this completion record
+does not change any rendered producer input.

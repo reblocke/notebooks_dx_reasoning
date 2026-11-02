@@ -9,6 +9,14 @@ and expected consequences (180 seconds). Both use synthetic binary teaching
 models, local Samantha narration, and a seven-second stationary closing hold.
 The optional 60-second adaptation is excluded.
 
+Both films have reviewed, finalized local packages under
+`output/05_test_results_clinical_v1/` and
+`output/06_beliefs_actions_clinical_v1/`. Each package includes the preview and
+1080p final, narration and measured subtitle sidecars, strict decode and storage
+receipts, keyframes, review evidence, a QA record, and a frozen producer snapshot.
+The user accepted both previews and finals after watching with sound; the agent
+could not hear audio in this session. The implementation log records the checks.
+
 The new goals default to `--cut clinical`; requesting `--cut original` fails.
 Goals 01–04 and preflight retain their existing defaults. On the production Mini,
 source `scripts/mini_environment.sh`, then produce 05 completely before 06:
