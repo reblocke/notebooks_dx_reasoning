@@ -1327,3 +1327,119 @@ workspace and all prior Git refs were copied and bundle-verified outside the
 checkout before edits. GitHub's older README topic branch is confirmed as the
 already-merged PR #1 head; its tree matches the existing `main` tree. Publication,
 follow-up review and consolidation to canonical `main` follow these local checks.
+
+
+## Films 05–06 implementation and preview work — 2026-11-01
+
+**Current production status:** Film 05 is finalized and reviewed. Film 06's
+corrected preview has passed strict decoding and complete visual/subtitle
+playback review; fresh user listening acceptance is pending. Film 06's final
+has not been rendered or accepted. Source consolidation does not pass these
+remaining production gates. See the most recent checkpoint below and the local
+output receipts for evidence.
+
+### Earlier implementation checkpoint (historical)
+
+The user approved two full narrated films (175 and 180 seconds), shorter measured
+subtitle segments, preservation of existing packages, and source publication
+through a reviewed PR followed by consolidation to main. The supplied briefs and
+audit are retained in `new_video_goals_20261101/`; the addendum distinguishes their
+historical branch descriptions from the current checkout. The missing reference
+plate was reconstructed from formulas and visually inspected as a storyboard
+reference, not a movie frame.
+
+Before editing, a verified all-refs bundle and hashes for 1,791 existing package
+files were recorded outside the checkout in
+`migration/20261101/films_05_06_20261102T012853Z/`. The task branch is
+`codex/films-05-06`, based on `c2cbf0e`. Earlier accepted films and narration have
+not been rewritten.
+
+Implementation adds explicit goal/cut registration, separate exact fixtures and
+codebooks, pure calculations, the two clinical scenes, shared event timing,
+measured phrase narration/subtitles, and fixture-aware frozen-source finalization.
+The original Cue representation and old-goal defaults remain supported. New
+subtitle receipts bind segmentation as well as voice, timing and audio. Review
+extraction includes event triplets and the actual last decoded frame.
+
+The mathematical and pipeline suite passed 99 tests, including snapshot-isolated
+imports and rejection of tampered inputs. Twelve geometry checks initially passed;
+a thirteenth was added after actual preview inspection found lingering late-added
+Manim children. The corrected cleanup uses the actual scene inventory, including
+non-vector wait placeholders. A separate negative-group label/border collision
+was also corrected. Superseded previews and the failed intermediate attempt are
+retained under the new film's attempts directory. The immutable fixture validator
+passed all 1,972 checks. The original fixture hash remains unchanged.
+
+Film 05 narration contains 43 measured segments. All fit the original 175-second
+schedule; closing speech ends at 172.096 seconds. Its complete preview is under
+review. At that point film 06 had not entered production. Native playback access
+was blocked by the locked Mini; user unlock was requested.
+Playback/listening and final-production gates remain pending. Source review may
+proceed in a draft PR; merge remains contingent on actual production acceptance.
+
+### Earlier playback and export checkpoint (historical) — November 1, 2026
+
+The Mini was unlocked. The user watched film 05's corrected preview and reported
+“Acceptable after watching.” That acceptance is bound to the narration WAV,
+receipt and timing hashes. Subsequent sequential-fade and CFR-only revisions
+retain those exact audio/timing inputs; their replacement previews were played
+from beginning to terminal frame at normal speed with intermittent screenshots.
+The agent cannot receive audio and does not claim an independent listening pass.
+
+The first 1080p candidate decoded but failed the strict timestamp check: after a
+Manim partial-clip boundary, 1,157 timestamps were five 1/15360-second ticks early.
+All 5,250 frames were present. The rejected movie and receipt are archived.
+The new-film export now checks exact source frame count and a maximum 1 ms
+timestamp offset before placing every frame on the exact CFR grid. Strict final
+verification was not relaxed. The replacement preview and final both pass,
+with exactly matching producer source and narration/sidecar hash maps.
+
+Native and 720p final frame inspection confirms readable denominators, selected
+person counts, posteriors, common probability scales and closing composition.
+The current final SHA-256 is
+`dbafa3de511e250dceba00dcce44728a972f8996e870136b8523e72182192916`.
+Fresh final listening acceptance was requested for this corrected candidate;
+it remains pending at this checkpoint. Local review HTML displays the authored
+VTT beneath the movie, avoiding overlap with burned-in explanatory captions.
+
+At that checkpoint film 06 remained before production. Its scene now explicitly changes the
+act/defer label at the threshold and uses a probability ruler before the
+equivalent log-odds ruler. Natural phrase boundaries preserve all narration
+wording. The updated scene's dry run covers exactly 180 seconds; focused checks
+pass. Its preview/final listening and production gates have not been claimed.
+
+The full animation suite passes 100 tests. CI geometry checks exposed an existing
+zero-coordinate assertion with no absolute tolerance; a 1e-10 tolerance admits
+platform floating-point roundoff without changing rendered output. Both GitHub
+CI suites pass. Codex review found no actionable issues on `d1492eb` and the CFR
+follow-up `a8d6121`; later scene/document changes still require latest-head review.
+All 1,791 inventoried earlier package files were rehashed and remain unchanged.
+Draft PR #3 remains unmerged pending the remaining production gates.
+
+### Film 05 accepted; film 06 preview production — November 1, 2026
+
+The user explicitly reported “Corrected final acceptable after watching” for
+film 05's replacement final. Its listening receipt records that statement and
+the movie/narration hashes. The finalizer verified the frozen fixture, matching
+preview/final producer maps, sidecars and strict receipts, then assembled the
+package with `acceptance_status: reviewed` and no pending gates. No film 06
+production render started before this completion.
+
+Film 06's 49 measured phrases fit its 180-second schedule. Closing narration
+ends at 175.186 seconds, leaving silence within the stationary closing hold.
+The first preview was archived after inspection found overlapping legend
+crossfades and evidence animations lagging the measured speech. The replacement
+uses sequential legend fades, earlier negative and conditional updates, and a
+threshold crossing during the corresponding narrated sentence. The conditional
+LR calculation is displayed explicitly. Audio, receipt and SRT/VTT bytes are
+unchanged across these visual/timing revisions.
+
+The corrected preview passes strict decoding with 2,700 frames and no source
+timestamp error. Frame inspection covers leaf endpoints, equal-unit logit
+offsets, the distinct conditional finding, utility changes, fixed belief during
+changing costs, equivalent threshold rulers and the last decoded frame.
+Complete normal-speed preview visual/subtitle playback has passed. Fresh user
+listening acceptance remains pending at this checkpoint. Film 06 final
+production, final acceptance and merge remain pending. Latest production state
+is also retained outside Git in
+`migration/20261101/films_05_06_current.json`.

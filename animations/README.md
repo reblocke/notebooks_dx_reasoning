@@ -1,5 +1,58 @@
 # Diagnostic-reasoning animation production
 
+## New full-length clinical films: 05 and 06
+
+The new specifications and implementation addendum are in
+`../docs/manim/new_video_goals_20261101/`. Goal 05 explains result denominators and
+likelihood ratios (175 seconds); goal 06 connects leaf plots, natural-log evidence
+and expected consequences (180 seconds). Both use synthetic binary teaching
+models, local Samantha narration, and a seven-second stationary closing hold.
+The optional 60-second adaptation is excluded.
+
+The new goals default to `--cut clinical`; requesting `--cut original` fails.
+Goals 01–04 and preflight retain their existing defaults. On the production Mini,
+source `scripts/mini_environment.sh`, then produce 05 completely before 06:
+
+```bash
+animations/.venv/bin/python animations/render.py --goal 05 --quality preview
+animations/.venv/bin/python animations/scripts/review_video.py --slug 05_test_results_clinical_v1 --quality preview
+# Actually review the corrected preview, including listening, before the final.
+animations/.venv/bin/python animations/render.py --goal 05 --quality final
+animations/.venv/bin/python animations/scripts/review_video.py --slug 05_test_results_clinical_v1 --quality final
+animations/.venv/bin/python animations/scripts/finalize_film.py --slug 05_test_results_clinical_v1 --scene clinical_test_results.py --review-note '<actual review evidence>'
+animations/.venv/bin/python animations/render.py --goal 06 --cut clinical --quality preview
+animations/.venv/bin/python animations/scripts/review_video.py --slug 06_beliefs_actions_clinical_v1 --quality preview
+# Actually review the corrected preview, including listening, before the final.
+animations/.venv/bin/python animations/render.py --goal 06 --cut clinical --quality final
+animations/.venv/bin/python animations/scripts/review_video.py --slug 06_beliefs_actions_clinical_v1 --quality final
+animations/.venv/bin/python animations/scripts/finalize_film.py --slug 06_beliefs_actions_clinical_v1 --scene clinical_beliefs_actions.py --review-note '<actual review evidence>'
+```
+
+The film registry declares each scene and its independent fixture identity.
+New source snapshots include the relevant fixture, helpers and segmented speech
+implementation. The finalizer checks the approved fixture in each frozen
+producer snapshot, never merely comparing a newly calculated live hash to itself.
+Legacy fixture identity checks remain intact.
+
+For 05/06, the audio export also places decoded video frames on an exact CFR
+grid. Before doing so, it requires the complete expected frame count and allows
+at most 1 ms of Manim partial-clip timestamp rounding. Missing frames or larger
+offsets fail; the finished movie must still pass the unchanged strict version-3
+timeline check. The source-cadence measurements are retained in storage receipts.
+
+For 05/06, the eight/twelve story cues contain shorter explicit speech segments.
+Every segment is synthesized and measured; one/two-line SRT and VTT entries use
+those measured intervals. Receipts bind cue text, segmentation, voice/rate and
+audio identity. Legacy cue-based sidecars remain supported. Archive superseded
+candidates before regenerating changed narration; never silently reuse mismatched
+audio. Caption text is concise and distinct from the full spoken subtitles.
+
+Review extraction includes before/during/after event samples and the actual last
+decoded frame. Automated verification initializes review gates as pending.
+Full playback and real listening acceptance are separate requirements; prior
+film acceptance does not carry forward. Current production status and limitations
+are in the implementation log and each local output package.
+
 This additive Python 3.12 / Manim CE 0.22.1 project contains the verified
 12-second preflight, the original silent films, and separate narrated clinical
 cuts. The current state of each

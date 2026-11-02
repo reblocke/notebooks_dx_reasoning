@@ -59,11 +59,14 @@ def package(tmp_path, monkeypatch):
         (snapshot / 'core/components.py').write_bytes(source.read_bytes())
         (snapshot / 'scenes').mkdir()
         (snapshot / 'scenes/example.py').write_bytes(scene.read_bytes())
+        (snapshot / 'data').mkdir()
+        (snapshot / 'data/manim_fixtures.json').write_bytes(fixture.read_bytes())
         for name in input_names:
             (snapshot / name).write_bytes((output / name).read_bytes())
         write_json(snapshot / 'render_sources.json', {
             'version': 1, 'slug': slug, 'scene': 'example.py', 'audio_expected': True,
-            'source_sha256': {'core/components.py': digest(source), 'scenes/example.py': digest(scene)},
+            'source_sha256': {'core/components.py': digest(source), 'scenes/example.py': digest(scene),
+                              'data/manim_fixtures.json': digest(fixture)},
             'input_sha256': {name: digest(output / name) for name in input_names},
         })
         write_json(output / f'{slug}_{tag}_storage.json', {
@@ -172,3 +175,22 @@ def test_finalizer_rejects_invalid_render_provenance_before_writing(package, fau
         finalize_film.main()
     assert not (output / f'{slug}_keyframes').exists()
     assert not (output / 'source_snapshot').exists()
+
+
+def test_finalizer_rejects_self_consistent_but_unapproved_frozen_fixture(package):
+    output, slug, _ = package
+    path=output/f'{slug}_preview_storage.json'
+    storage=json.loads(path.read_text())
+    snapshot=Path(storage['render_sources']['snapshot'])
+    fixture=snapshot/'data/manim_fixtures.json'
+    fixture.write_text('{"changed": true}')
+    manifest_path=snapshot/'render_sources.json'
+    manifest=json.loads(manifest_path.read_text())
+    manifest['source_sha256']['data/manim_fixtures.json']=digest(fixture)
+    write_json(manifest_path,manifest)
+    storage['render_sources']['manifest_sha256']=digest(manifest_path)
+    write_json(path,storage)
+    with pytest.raises(ValueError,match='approved fixture'):
+        finalize_film.main()
+    assert not (output/f'{slug}_keyframes').exists()
+    assert not (output/'source_snapshot').exists()

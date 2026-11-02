@@ -18,7 +18,9 @@ class ProbabilityBarTests(unittest.TestCase):
             animation.interpolate(alpha)
             self.assertAlmostEqual(source.width, expected.width)
             self.assertAlmostEqual(source.height, expected.height)
-            np.testing.assert_allclose(source.get_center(), expected.get_center())
+            # Pango/Cairo transforms can leave roundoff near the zero axes.
+            np.testing.assert_allclose(source.get_center(), expected.get_center(),
+                                       rtol=0, atol=1e-10)
         animation.finish()
 
     def test_lengths_preserve_prior_and_selected_joint_mass(self):

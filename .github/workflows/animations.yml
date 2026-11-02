@@ -17,3 +17,6 @@ jobs:
         env:
           PYTHONPATH: animations
       - run: git diff --check
+      - run: uv run --project animations --locked python -m unittest discover -s animations/visual_checks -p 'test_*.py'
+        env:
+          PYTHONPATH: animations

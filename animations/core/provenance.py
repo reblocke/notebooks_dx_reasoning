@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import shutil
 import tempfile
+from .films import film_for_slug
 
 
 MANIFEST = 'render_sources.json'
@@ -15,22 +16,21 @@ def digest(path):
 
 def source_files_for_film(root, slug, scene, audio_expected):
     root = Path(root)
+    film = film_for_slug(slug)
+    if scene != film.scene or audio_expected != film.narrated:
+        raise ValueError('Scene/audio does not match registered film')
     names = ['pyproject.toml', 'uv.lock', 'manim.cfg', 'render.py',
-             'core/__init__.py', 'data/manim_fixtures.json', 'core/math.py',
-             'core/components.py', 'core/cues.py', 'core/provenance.py',
+             'core/__init__.py', film.fixture_path, 'core/math.py',
+             'core/components.py', 'core/cues.py', 'core/provenance.py', 'core/films.py',
              'scripts/review_video.py', 'scripts/finalize_film.py']
     if slug != 'preflight':
-        names.append(f'core/story{slug[:2]}.py')
+        names.append(f'core/story{film.goal}.py')
     names.append(f'scenes/{scene}')
-    if slug.startswith('02_'):
-        names.append('core/rulers.py')
-    if slug.startswith('03_'):
-        names.extend(['core/entropy_geometry.py', 'core/entropy_components.py'])
-    if slug.startswith('04_'):
-        names.extend(['core/atlas_geometry.py', 'core/atlas_components.py'])
+    names.extend(film.dependencies)
     if audio_expected:
-        names.extend([f'core/story{slug[:2]}_clinical.py', 'core/narration.py',
-                      'core/voice_config.py'])
+        names.extend([f'core/story{film.goal}_clinical.py', 'core/narration.py',
+                      'core/voice_config.py', 'core/subtitles.py'])
+    names = list(dict.fromkeys(names))
     return [root / name for name in names]
 
 

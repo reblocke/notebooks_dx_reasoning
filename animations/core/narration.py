@@ -13,7 +13,10 @@ def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def make_narration(cues, output, slug, *, voice=VOICE, rate=VOICE_RATE):
+def make_narration(cues, output, slug, *, voice=VOICE, rate=VOICE_RATE, segments=None):
+    if segments is not None:
+        from .subtitles import build_segmented_narration
+        return build_segmented_narration(cues, output, slug, segments, voice=voice, rate=rate)
     output = Path(output)
     audio = output / f'{slug}_narration.wav'
     receipt = output / f'{slug}_narration_audio.json'
@@ -67,6 +70,23 @@ def make_narration(cues, output, slug, *, voice=VOICE, rate=VOICE_RATE):
 
 def write_narrated_sidecars(cues, audio_record, output, slug):
     output = Path(output)
+    if 'subtitle_intervals' in audio_record:
+        import textwrap
+        from .subtitles import subtitle_rows
+        rows = subtitle_rows(cues, audio_record)
+        srt, vtt = [], ['WEBVTT\n']
+        for i, row in enumerate(rows, 1):
+            text = '\n'.join(textwrap.wrap(row['text'], 42, break_long_words=False, break_on_hyphens=False))
+            start, end = row['start'], row['end']
+            srt.append(f'{i}\n{timestamp(start, ",")} --> {timestamp(end, ",")}\n{text}\n')
+            vtt.append(f'{row["segment_id"]}\n{timestamp(start, ".")} --> {timestamp(end, ".")}\n{text}\n')
+        (output/f'{slug}.srt').write_text('\n'.join(srt), encoding='utf-8')
+        (output/f'{slug}.vtt').write_text('\n'.join(vtt), encoding='utf-8')
+        script = [f'# Narration: {slug}', '', 'Measured local speech; short captions are authored separately.', '']
+        for cue in cues:
+            script += [f'## {cue.beat_id} ({cue.start:g}–{cue.end:g} s)', '', cue.narration, '']
+        (output/f'{slug}_narration.md').write_text('\n'.join(script), encoding='utf-8')
+        return
     intervals = audio_record['speech_intervals']
     if [c.beat_id for c in cues] != [row['beat_id'] for row in intervals]:
         raise ValueError('Narration intervals do not match cue IDs')

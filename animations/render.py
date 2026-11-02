@@ -1,5 +1,6 @@
 """Render one production scene with a measured free-space guard."""
 import argparse
+import importlib
 import json
 import os
 import signal
@@ -9,13 +10,41 @@ import subprocess
 import sys
 import time
 from core.provenance import capture_render_sources, digest
+from core.films import resolve_film
 
 ROOT = Path(__file__).resolve().parent
 RESERVE = 5 * 2**30
 CLINICAL_HEADROOM = 256 * 2**20
 
 
+def check_source_cadence(frames, time_base, fps, duration):
+    """Allow sub-millisecond concat rounding, never missing or displaced frames."""
+    from fractions import Fraction
+    expected = Fraction(str(duration)) * fps
+    if expected.denominator != 1 or len(frames) != expected.numerator:
+        raise ValueError('Source video frame count differs from the story duration')
+    tick = Fraction(time_base)
+    errors = [abs(int(frame['best_effort_timestamp']) * tick - Fraction(i, fps))
+              for i, frame in enumerate(frames)]
+    maximum = max(errors)
+    if tick <= 0 or maximum > Fraction(1, 1000):
+        raise ValueError('Source video cadence differs by more than concat rounding')
+    return {'frame_count': len(frames), 'maximum_timestamp_error_seconds': float(maximum),
+            'allowed_timestamp_error_seconds': .001}
+
+
+def inspect_source_cadence(movie, fps, duration):
+    command = ['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_frames',
+               '-show_streams', '-show_entries',
+               'frame=best_effort_timestamp:stream=time_base', '-of', 'json', str(movie)]
+    data = json.loads(subprocess.check_output(command, text=True, stderr=subprocess.PIPE))
+    return check_source_cadence(data['frames'], data['streams'][0]['time_base'], fps, duration)
+
+
 def clinical_timing(goal):
+    if goal in ('05', '06'):
+        data = importlib.import_module(f'core.story{goal}_clinical').story()
+        return data['final_hold_seconds'], data['events']
     if goal == '01':
         return 7, [
             {'id': 'observe_exudative', 'start': 26, 'settled': 26.8},
@@ -71,6 +100,10 @@ def apply_clinical_timing(timing, cues, narration, goal):
                                       [('centroid',8), ('concentrated_A',10.5), ('concentrated_B',14),
                                        ('substitution_equal_entropy',39), ('comparison',50),
                                        ('window_02',55), ('window_24',59), ('window_04',63)]]
+    if goal in ('05', '06'):
+        data = importlib.import_module(f'core.story{goal}_clinical').story()
+        timing['extra_keyframes'] = data['extra_keyframes']
+        timing['subtitle_intervals'] = narration['subtitle_intervals']
     intervals = narration['speech_intervals']
     if len(cues) != len(intervals) or len(cues) != len(timing['cues']):
         raise ValueError('Clinical timing and narration cue counts disagree')
@@ -86,6 +119,9 @@ def apply_clinical_timing(timing, cues, narration, goal):
         cue['caption_visible_end'] = cue['end']
     timing['cues'][-1]['caption_fade_in_start'] = hold_start - .4
     timing['cues'][-1]['caption_fully_visible_at'] = hold_start
+    if goal == '06':
+        timing['cues'][-1]['caption_fade_in_start'] = cues[-2].start
+        timing['cues'][-1]['caption_fully_visible_at'] = cues[-2].start + .4
     if goal == '01':
         timing['cues'][3]['caption_fully_visible_at'] = cues[3].start + .8
     if goal == '04':
@@ -105,51 +141,26 @@ def stop_render(process):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--goal", choices=["preflight", "01", "02", "03", "04"], required=True)
+    parser.add_argument("--goal", choices=["preflight", "01", "02", "03", "04", "05", "06"], required=True)
     parser.add_argument("--quality", choices=["preview", "final"], default="preview")
-    parser.add_argument("--cut", choices=["original", "clinical"], default="original")
+    parser.add_argument("--cut", choices=["original", "clinical"], default=None)
     args = parser.parse_args()
-    clinical = args.cut == 'clinical'
-    if clinical and args.goal not in ('01', '02', '03', '04'):
-        parser.error('--cut clinical is available only for goals 01 through 04')
+    try:
+        film = resolve_film(args.goal, args.cut)
+    except ValueError as exc:
+        parser.error(str(exc))
+    clinical = film.narrated
+    if digest(ROOT/film.fixture_path) != film.fixture_hash:
+        raise ValueError('Scientific fixture differs from the registered approved identity')
     free = shutil.disk_usage(ROOT).free
     if free < RESERVE:
         raise SystemExit("Render blocked: at least 5 GiB free is required.")
     if clinical and free < RESERVE + CLINICAL_HEADROOM:
         raise SystemExit('Clinical render blocked: the 5 GiB reserve plus 256 MiB working space is required.')
-    if args.goal == "preflight":
-        slug, source, scene = "preflight", "preflight.py", "DiagnosticPreflight"
-    else:
+    slug, source, scene = film.slug, film.scene, film.scene_class
+    if args.goal != 'preflight':
         from core.cues import write_sidecars
-        if args.goal == "01":
-            if clinical:
-                from core.story01_clinical import SLUG, story
-                slug, source, scene = SLUG, 'clinical_uncertainty.py', 'ClinicalUncertainty'
-            else:
-                from core.story01 import story
-                slug, source, scene = "01_uncertainty_increases", "uncertainty_increases.py", "UncertaintyIncreases"
-        elif args.goal == "02":
-            if clinical:
-                from core.story02_clinical import SLUG, story
-                slug, source, scene = SLUG, 'clinical_coordinates.py', 'ClinicalCoordinates'
-            else:
-                from core.story02 import story
-                slug, source, scene = "02_coordinate_systems", "coordinate_systems.py", "OneEvidenceThreeCoordinates"
-        elif args.goal == "03":
-            if clinical:
-                from core.story03_clinical import SLUG, story
-                slug, source, scene = SLUG, 'clinical_entropy_area.py', 'ClinicalEntropyArea'
-            else:
-                from core.story03 import story
-                slug, source, scene = "03_entropy_area", "entropy_area.py", "EntropyAsArea"
-        else:
-            if clinical:
-                from core.story04_clinical import SLUG, story
-                slug, source, scene = SLUG, 'clinical_trajectory_atlas.py', 'ClinicalTrajectoryAtlas'
-            else:
-                from core.story04 import story
-                slug, source, scene = "04_trajectory_atlas", "trajectory_atlas.py", "DiagnosticTrajectoryAtlas"
-        data = story()
+        data = importlib.import_module(film.story_module).story()
         cues = data['cues']
         output = ROOT / "output" / slug
         if clinical:
@@ -194,7 +205,7 @@ def main():
         }
         if clinical:
             from core.narration import make_narration, write_narrated_sidecars
-            narration = make_narration(cues, output, slug)
+            narration = make_narration(cues, output, slug, segments=data.get('speech_segments'))
             write_narrated_sidecars(cues, narration, output, slug)
             apply_clinical_timing(timing, cues, narration, args.goal)
         (output / f"{slug}_timing.json").write_text(json.dumps(timing, indent=2) + "\n")
@@ -213,6 +224,7 @@ def main():
     samples = [free, free_before_launch]
     status = "failed"
     mux_command = None
+    source_cadence = None
     render_sources = capture_render_sources(ROOT, output, slug, source, clinical, args.quality)
     snapshot = Path(render_sources['snapshot'])
     samples.append(shutil.disk_usage(ROOT).free)
@@ -237,9 +249,17 @@ def main():
         if len(rendered) != 1:
             raise RuntimeError("Expected exactly one complete preflight export.")
         if clinical:
+            video_options = ['-c:v', 'copy']
+            if args.goal in ('05', '06'):
+                # Manim's concatenated partials can carry millisecond-container
+                # rounding. Preserve every decoded frame on the exact CFR grid.
+                source_cadence = inspect_source_cadence(rendered[0], fps, cues[-1].end)
+                video_options = ['-vf', f'setpts=N/({fps}*TB)', '-r', str(fps),
+                                 '-fps_mode', 'cfr', '-c:v', 'libx264', '-crf', '18',
+                                 '-pix_fmt', 'yuv420p']
             mux_command = ['ffmpeg', '-v', 'error', '-xerror', '-i', str(rendered[0]),
                            '-i', str(snapshot / f'{slug}_narration.wav'), '-map', '0:v:0',
-                           '-map', '1:a:0', '-c:v', 'copy', '-c:a', 'aac', '-ar', '48000',
+                           '-map', '1:a:0', *video_options, '-c:a', 'aac', '-ar', '48000',
                            '-ac', '1', '-b:a', '128k', '-t', str(cues[-1].end), '-movflags', '+faststart',
                            '-y', str(output / f'{name}.mp4')]
             mux = subprocess.Popen(mux_command, cwd=ROOT, start_new_session=True)
@@ -266,6 +286,7 @@ def main():
             stop_render(process)
         (output / f"{name}_storage.json").write_text(json.dumps({
             "render_sources": render_sources,
+            "source_cadence": source_cadence,
             "video_sha256": digest(output / f'{name}.mp4') if status == 'complete' else None,
             "command": command, "mux_command": mux_command, "free_bytes_before": free,
             "minimum_sampled_free_bytes": min(samples),
